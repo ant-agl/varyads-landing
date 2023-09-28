@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="./imgicon.svg">
+
+  <!-- fonts -->
+  <link rel="stylesheet" href="./fonts/GTWalsheimPro/link.css">
+
+  <!-- styles -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <title>VaryAds</title>
+</head>
+
+<body>
+
+  <div class="nav"> <!-- nav_dark -->
+    <div class="container">
+      <div class="nav__content">
+        <div class="nav__logo">
+          <img src="./img/logo.png" alt="VaryAds">
+        </div>
+        <div class="nav__logo nav__logo_light">
+          <img src="./img/logo-light.png" alt="VaryAds">
+        </div>
+        <div class="nav__btns">
+          <a href="#solutions" class="nav__link nav-pc">Solutions</a>
+          <a href="#contacts" class="nav__link nav-pc">Contacts</a>
+          <div class="lang nav-pc">
+            <div class="lang__select">
+              <img src="./img/flags/en.png" alt="en">
+            </div>
+            <div class="lang__list">
+              <a href="./" class="lang__item active">
+                <img src="./img/flags/en.png" alt="en" class="lang__flag">
+                <span class="lang__text">English</span>
+                <img src="./img/icons/checkmark.svg" class="lang__check">
+              </a>
+              <a href="./de" class="lang__item">
+                <img src="./img/flags/de.png" alt="de" class="lang__flag">
+                <span class="lang__text">Deutsch</span>
+                <img src="./img/icons/checkmark.svg" class="lang__check">
+              </a>
+            </div>
+          </div>
+          <a href="#" class="nav__link nav-pc">Sign in</a>
+          <button class="nav__mobile-btn">
+            <img src="./img/icons/menu.svg" alt="menu">
+            <div class="cross"></div>
+          </button>
+          <a href="#" class="btn btn_primary">Get started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav_mobile">
+    <a href="#solutions" class="nav__link">Solutions</a>
+    <a href="#contacts" class="nav__link">Contacts</a>
+    <div class="lang">
+      <div class="lang__select">
+        <img src="./img/flags/en.png" alt="en">
+      </div>
+      <div class="lang__list">
+        <a href="./" class="lang__item active">
+          <img src="./img/flags/en.png" alt="en" class="lang__flag">
+          <span class="lang__text">English</span>
+          <img src="./img/icons/checkmark.svg" class="lang__check">
+        </a>
+        <a href="./de" class="lang__item">
+          <img src="./img/flags/de.png" alt="de" class="lang__flag">
+          <span class="lang__text">Deutsch</span>
+          <img src="./img/icons/checkmark.svg" class="lang__check">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sections-block">
+    <section class="main">
+      <div class="container">
+        <div class="main__text">
+          <div class="main__title wow">Scale up and cut the costs on ads production</div>
+          <div class="main__desc wow">Build one template in Visual Ad Studio<br>and get many ads variations with just a
+            click.
+          </div>
+          <a href="#" class="btn btn_primary">Get started</a>
+        </div>
+        <div class="main__images">
+          <img src="./img/slides/1.png" alt="html5" class="main__slide active" id="html5">
+          <img src="./img/slides/2.png" alt="image" class="main__slide" id="image">
+          <img src="./img/slides/3.png" alt="video" class="main__slide" id="video">
+        </div>
+        <div class="switch">
+          <div class="switch__item active" data-target="html5">HTML5</div>
+          <div class="switch__item" data-target="image">Image</div>
+          <div class="switch__item" data-target="video">Video</div>
+          <div class="switch__select"></div>
+        </div>
+      </div>
+      <div class="circle circle_left circle_blue"></div>
+      <div class="circle circle_right circle_yellow"></div>
+    </section>
+    <section class="main main_black">
+      <div class="container">
+        <div class="main__text">
+          <div class="main__title wow">Harness the power of personalization</div>
+          <div class="main__desc wow">Right ad for each person based on user segment, <br>weather or other data sources.
+          </div>
+          <a href="#" class="btn btn_gree">Get started</a>
+        </div>
+        <div class="main__images">
+          <img src="./img/slides/4.png" alt="location" class="main__slide active" id="location">
+          <img src="./img/slides/5.png" alt="weather" class="main__slide" id="weather">
+          <img src="./img/slides/6.png" alt="segment" class="main__slide" id="segment">
+          <img src="./img/slides/7.png" alt="trends" class="main__slide" id="trends">
+        </div>
+        <div class="switch">
+          <div class="switch__item active" data-target="location">Location</div>
+          <div class="switch__item" data-target="weather">Weather</div>
+          <div class="switch__item" data-target="segment">Segment</div>
+          <div class="switch__item" data-target="trends">Trends</div>
+          <div class="switch__select"></div>
+        </div>
+      </div>
+      <div class="circle circle_left circle_purpure"></div>
+      <div class="circle circle_right circle_green"></div>
+    </section>
+    <section class="main main_black">
+      <div class="container">
+        <div class="main__text">
+          <div class="main__title wow">Grow campaigns efficiency with auto-A/B testing</div>
+          <div class="main__desc wow">Optimize by preferred metric: best-performing ads will get <br>more impressions
+            automatically.</div>
+          <a href="#" class="btn btn_purpure">Get started</a>
+        </div>
+        <div class="main__images">
+          <img src="./img/slides/8.png" alt="attention" class="main__slide active" id="attention">
+          <img src="./img/slides/9.png" alt="clicks" class="main__slide" id="clicks">
+          <img src="./img/slides/10.png" alt="goals" class="main__slide" id="goals">
+          <img src="./img/slides/11.png" alt="value" class="main__slide" id="value">
+        </div>
+        <div class="switch">
+          <div class="switch__item active" data-target="attention">Attention rate</div>
+          <div class="switch__item" data-target="clicks">Clicks</div>
+          <div class="switch__item" data-target="goals">Goals</div>
+          <div class="switch__item" data-target="value">Value</div>
+          <div class="switch__select"></div>
+        </div>
+      </div>
+      <div class="circle circle_left circle_blue"></div>
+      <div class="circle circle_right circle_purpure"></div>
+    </section>
+  </div>
+
+  <section class="solutions" id="solutions">
+    <div class="container">
+      <div class="solutions__content">
+        <h2 class="h2">Solutions</h2>
+        <div class="solutions__cards">
+          <a href="#visual" class="wow solutions__card">
+            <div>
+              <div class="solutions__head">
+                <img src="./img/icons/eva.png" alt="Eva" class="solutions__eva">
+                <h4 class="solutions__title">Visual Ad Studio</h4>
+                <svg class="solutions__arr" width="28" height="28" viewBox="0 0 28 28" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g id="solar:round-arrow-right-bold">
+                    <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                      d="M13.9999 25.6666C20.4434 25.6666 25.6666 20.4435 25.6666 14C25.6666 7.55648 20.4434 2.33331 13.9999 2.33331C7.55642 2.33331 2.33325 7.55648 2.33325 14C2.33325 20.4435 7.55642 25.6666 13.9999 25.6666ZM14.5483 9.88165C14.7123 9.71779 14.9347 9.62575 15.1666 9.62575C15.3985 9.62575 15.6209 9.71779 15.7849 9.88165L19.2849 13.3816C19.4488 13.5457 19.5408 13.7681 19.5408 14C19.5408 14.2319 19.4488 14.4543 19.2849 14.6183L15.7849 18.1183C15.7048 18.2043 15.6082 18.2732 15.5009 18.3211C15.3935 18.3689 15.2777 18.3946 15.1602 18.3967C15.0427 18.3987 14.926 18.3771 14.8171 18.3331C14.7081 18.2891 14.6091 18.2236 14.526 18.1405C14.443 18.0574 14.3775 17.9585 14.3334 17.8495C14.2894 17.7406 14.2678 17.6239 14.2699 17.5064C14.272 17.3889 14.2977 17.273 14.3455 17.1657C14.3933 17.0584 14.4623 16.9618 14.5483 16.8816L16.5549 14.875H9.33325C9.10119 14.875 8.87863 14.7828 8.71453 14.6187C8.55044 14.4546 8.45825 14.232 8.45825 14C8.45825 13.7679 8.55044 13.5454 8.71453 13.3813C8.87863 13.2172 9.10119 13.125 9.33325 13.125H16.5549L14.5483 11.1183C14.3844 10.9543 14.2924 10.7319 14.2924 10.5C14.2924 10.2681 14.3844 10.0457 14.5483 9.88165Z"
+                      fill="black" fill-opacity="0.48" />
+                  </g>
+                </svg>
+              </div>
+              <p class="solutions__desc">Build ads from scratch or using our template library with with our powerful
+                tool.</p>
+            </div>
+            <div class="solutions__img solutions__img_1">
+              <img src="./img/solutions/1.png">
+            </div>
+          </a>
+          <a href="#personalization" class="wow solutions__card solutions__card_purpure">
+            <div>
+              <div class="solutions__head">
+                <h4 class="solutions__title">Ads personalization</h4>
+                <svg class="solutions__arr" width="28" height="28" viewBox="0 0 28 28" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g id="solar:round-arrow-right-bold">
+                    <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                      d="M13.9999 25.6666C20.4434 25.6666 25.6666 20.4435 25.6666 14C25.6666 7.55648 20.4434 2.33331 13.9999 2.33331C7.55642 2.33331 2.33325 7.55648 2.33325 14C2.33325 20.4435 7.55642 25.6666 13.9999 25.6666ZM14.5483 9.88165C14.7123 9.71779 14.9347 9.62575 15.1666 9.62575C15.3985 9.62575 15.6209 9.71779 15.7849 9.88165L19.2849 13.3816C19.4488 13.5457 19.5408 13.7681 19.5408 14C19.5408 14.2319 19.4488 14.4543 19.2849 14.6183L15.7849 18.1183C15.7048 18.2043 15.6082 18.2732 15.5009 18.3211C15.3935 18.3689 15.2777 18.3946 15.1602 18.3967C15.0427 18.3987 14.926 18.3771 14.8171 18.3331C14.7081 18.2891 14.6091 18.2236 14.526 18.1405C14.443 18.0574 14.3775 17.9585 14.3334 17.8495C14.2894 17.7406 14.2678 17.6239 14.2699 17.5064C14.272 17.3889 14.2977 17.273 14.3455 17.1657C14.3933 17.0584 14.4623 16.9618 14.5483 16.8816L16.5549 14.875H9.33325C9.10119 14.875 8.87863 14.7828 8.71453 14.6187C8.55044 14.4546 8.45825 14.232 8.45825 14C8.45825 13.7679 8.55044 13.5454 8.71453 13.3813C8.87863 13.2172 9.10119 13.125 9.33325 13.125H16.5549L14.5483 11.1183C14.3844 10.9543 14.2924 10.7319 14.2924 10.5C14.2924 10.2681 14.3844 10.0457 14.5483 9.88165Z"
+                      fill="#fff" />
+                  </g>
+                </svg>
+              </div>
+              <p class="solutions__desc">Boost campaigns efficiency with ads tailored for each user.</p>
+            </div>
+            <div class="solutions__img solutions__img_2">
+              <img src="./img/solutions/2.png" class="solutions__img_pc">
+              <img src="./img/solutions/2-mob.png" class="solutions__img_mob">
+            </div>
+          </a>
+          <a href="#delivery" class="wow solutions__card solutions__card_black">
+            <div>
+              <div class="solutions__head">
+                <h4 class="solutions__title">Ad delivery optimization</h4>
+                <svg class="solutions__arr" width="28" height="28" viewBox="0 0 28 28" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g id="solar:round-arrow-right-bold">
+                    <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                      d="M13.9999 25.6666C20.4434 25.6666 25.6666 20.4435 25.6666 14C25.6666 7.55648 20.4434 2.33331 13.9999 2.33331C7.55642 2.33331 2.33325 7.55648 2.33325 14C2.33325 20.4435 7.55642 25.6666 13.9999 25.6666ZM14.5483 9.88165C14.7123 9.71779 14.9347 9.62575 15.1666 9.62575C15.3985 9.62575 15.6209 9.71779 15.7849 9.88165L19.2849 13.3816C19.4488 13.5457 19.5408 13.7681 19.5408 14C19.5408 14.2319 19.4488 14.4543 19.2849 14.6183L15.7849 18.1183C15.7048 18.2043 15.6082 18.2732 15.5009 18.3211C15.3935 18.3689 15.2777 18.3946 15.1602 18.3967C15.0427 18.3987 14.926 18.3771 14.8171 18.3331C14.7081 18.2891 14.6091 18.2236 14.526 18.1405C14.443 18.0574 14.3775 17.9585 14.3334 17.8495C14.2894 17.7406 14.2678 17.6239 14.2699 17.5064C14.272 17.3889 14.2977 17.273 14.3455 17.1657C14.3933 17.0584 14.4623 16.9618 14.5483 16.8816L16.5549 14.875H9.33325C9.10119 14.875 8.87863 14.7828 8.71453 14.6187C8.55044 14.4546 8.45825 14.232 8.45825 14C8.45825 13.7679 8.55044 13.5454 8.71453 13.3813C8.87863 13.2172 9.10119 13.125 9.33325 13.125H16.5549L14.5483 11.1183C14.3844 10.9543 14.2924 10.7319 14.2924 10.5C14.2924 10.2681 14.3844 10.0457 14.5483 9.88165Z"
+                      fill="#fff" />
+                  </g>
+                </svg>
+              </div>
+              <p class="solutions__desc">Get the most out of your ads with automatic optimization based on preferred
+                criteria.</p>
+            </div>
+            <div class="solutions__tags">
+              <div class="solutions__tag">Clicks</div>
+              <div class="solutions__tag active">Goals</div>
+              <div class="solutions__tag">Value</div>
+              <div class="solutions__tag">Engagement</div>
+            </div>
+            <div class="solutions__img solutions__img_3">
+              <img src="./img/solutions/3.png">
+            </div>
+          </a>
+        </div>
+
+        <div class="solutions-row" id="visual">
+          <div class="solutions-row__text wow">
+            <div class="solutions-row__head">
+              <img src="./img/icons/eva.png" alt="Eva" class="solutions-row__eva">
+              <div class="h3 solutions-row__title">Visual Ad Studio</div>
+            </div>
+            <div class="solutions-row__desc">Build ads from scratch or using our template library with Visual Ad Studio.
+              An ad can have set of required sizes as well as variations for any element to get many versions for
+              further split tests.</div>
+          </div>
+          <div class="solutions-row__img solutions-row__img_1 wow">
+            <img src="./img/solutions/6.png" class="wow" />
+            <div class="solutions-row__circle solutions-row__circle_green"></div>
+          </div>
+        </div>
+
+        <div class="solutions-row solutions-row_reverse" id="personalization">
+          <div class="solutions-row__text wow">
+            <div class="solutions-row__head">
+              <div class="h3 solutions-row__title">Ads personalization</div>
+            </div>
+            <div class="solutions-row__desc">Boost campaigns efficiency with ads tailored for each user. Set up
+              conditions to show a certain state of the creative based on Location, Language, Weather, Segment, Trends,
+              Varyads events or other external source of data.</div>
+          </div>
+          <div class="solutions-row__img solutions-row__img_2 wow">
+            <img src="./img/solutions/6.png" class="wow" />
+            <div class="solutions-row__circle solutions-row__circle_purpure"></div>
+          </div>
+        </div>
+
+        <div class="solutions-row" id="delivery">
+          <div class="solutions-row__text wow">
+            <div class="solutions-row__head">
+              <div class="h3 solutions-row__title">Ad delivery optimization</div>
+            </div>
+            <div class="solutions-row__desc">Get the most out of your ads with automatic optimization based on preferred
+              criteria. Service tracks the best performing creatives and gives them more impressions. You choose
+              strategies from Attention to ad, Clicks, Goals, Value or Engagement rate.</div>
+          </div>
+          <div class="solutions-row__img wow">
+            <img src="./img/solutions/6.png" />
+            <div class="solutions-row__circle solutions-row__circle_blue"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="request" id="contacts">
+    <div class="container">
+      <div class="request__content">
+        <h3 class="h2 request__title">See Varyads in action</h3>
+        <p class="request__desc">Do you want more information or request a demo? <br>Contact us <a
+            href="mailto:sales@varyads.com">sales@varyads.com</a> now!
+        </p>
+        <a href="mailto:sales@varyads.com" class="btn btn_request wow">Request a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__head">
+        <div class="footer__logo">
+          <img src="./img/logo-light.png" alt="VaryAds">
+        </div>
+        <div class="footer__links">
+          <div class="lang">
+            <div class="lang__select">
+              <img src="./img/flags/en.png" alt="en">
+            </div>
+            <div class="lang__list">
+              <a href="./" class="lang__item active">
+                <img src="./img/flags/en.png" alt="en" class="lang__flag">
+                <span class="lang__text">English</span>
+                <img src="./img/icons/checkmark.svg" class="lang__check">
+              </a>
+              <a href="./de" class="lang__item">
+                <img src="./img/flags/de.png" alt="de" class="lang__flag">
+                <span class="lang__text">Deutsch</span>
+                <img src="./img/icons/checkmark.svg" class="lang__check">
+              </a>
+            </div>
+          </div>
+          <a href="#" class="footer__link footer__link_padding">Sign in</a>
+          <div class="btn btn_primary">Get started</div>
+        </div>
+      </div>
+      <div class="footer__body">
+        <div class="footer__col">
+          <h6 class="footer__title">Solutions</h6>
+          <a href="#visual" class="footer__link">Visual Ad Studio</a>
+          <a href="#personalization" class="footer__link">Ads personalisation</a>
+          <a href="#delivery" class="footer__link">Ad delivery optimisation</a>
+        </div>
+        <div class="footer__col">
+          <h6 class="footer__title">Contacts</h6>
+          <a href="mailto:sales@varyads.com" class="footer__link">sales@varyads.com</a>
+          <a href="mailto:privacy@varyads.com" class="footer__link">privacy@varyads.com</a>
+          <a href="mailto:support@varyads.com" class="footer__link">support@varyads.com</a>
+        </div>
+        <div class="footer__col">
+          <h6 class="footer__title">Company</h6>
+          <a href="#" class="footer__link">Impressum</a>
+          <p class="footer__text">Böhrer Innovations UG<br>76275 Ettlingen</p>
+        </div>
+      </div>
+      <div class="footer__footer">
+        <p class="footer__text">2023 © Varyads. All rights reserved.</p>
+        <div class="footer__row">
+          <a href="#" class="footer__link footer__link_dark">Terms of use</a>
+          <span class="footer__dot"></span>
+          <a href="#" class="footer__link footer__link_dark">Cookie policy</a>
+          <span class="footer__dot"></span>
+          <a href="#" class="footer__link footer__link_dark">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/script.js"></script>
+</body>
+
+</html>
