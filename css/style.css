@@ -895,6 +895,7 @@ html * {
   transition: 0.4s;
   opacity: 1;
   transform-origin: bottom right;
+  box-shadow: -8px 8px 32px 0px #26489433;
 }
 .privacy.hide {
   transform: scale(0);
@@ -1286,5 +1287,17 @@ html * {
   }
   .nav__btns {
     gap: 8px;
+  }
+  .privacy {
+    left: 20px;
+    right: 20px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .privacy__btns {
+    gap: 8px;
+  }
+  .privacy__btns > button {
+    padding: 12px;
   }
 }
