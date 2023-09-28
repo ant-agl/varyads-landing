@@ -110,3 +110,19 @@ navLinks.forEach((link) => {
     document.querySelector("body").style.overflow = "auto";
   });
 });
+
+// privacy
+const privacy = document.querySelector(".privacy");
+const privacyOne = document.querySelector(".privacy-one");
+const privacyAll = document.querySelector(".privacy-all");
+privacyOne.addEventListener("click", hidePrivacy);
+privacyAll.addEventListener("click", hidePrivacy);
+
+if (!localStorage.privacyHide) {
+  privacy.classList.remove("hide");
+}
+
+function hidePrivacy() {
+  localStorage.privacyHide = true;
+  privacy.classList.add("hide");
+}
