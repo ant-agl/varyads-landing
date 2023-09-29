@@ -27,6 +27,22 @@ let speed = [
 let a = 0;
 window.scrollTo(0, 0);
 
+const colorsCircle = [
+  ["blue", "yellow"],
+  ["green", "blue"],
+  ["yellow", "purpure"],
+  ["purpure", "green"],
+  ["yellow", "blue"],
+  ["blue", "green"],
+  ["purpure", "yellow"],
+  ["blue", "purpure"],
+  ["yellow", "green"],
+  ["green", "purpure"],
+  ["blue", "yellow"],
+];
+
+const colors = ["blue", "yellow", "green", "purpure"];
+
 function changeSlide(e) {
   // console.log(e);
   console.group();
@@ -186,6 +202,14 @@ mainBlocks.forEach((mainBlock) => {
       curIndex = index;
       mainBlock.querySelector(".main__slide.active").classList.remove("active");
       document.getElementById(target).classList.add("active");
+
+      mainBlock.querySelectorAll(".circle").forEach((circle, i) => {
+        colors.forEach((color) => {
+          circle.classList.remove("circle_" + color);
+        });
+
+        circle.classList.add("circle_" + colorsCircle[curIndex][i]);
+      });
 
       switchSelect.classList.add("animate");
       setTimeout(() => {
