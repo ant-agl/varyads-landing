@@ -13,7 +13,18 @@ let scroll = 0;
 let ts = 0;
 let timeTS = 0;
 let timeScroll = 0;
-let interval;
+let interval, timer;
+let speed = [
+  {
+    time: 0,
+    v: 0,
+  },
+  {
+    time: 0,
+    v: 0,
+  },
+];
+let a = 0;
 window.scrollTo(0, 0);
 
 function changeSlide(e) {
@@ -27,6 +38,15 @@ function changeSlide(e) {
     console.log("timeScroll", timeScroll);
     ts = e.changedTouches[0].clientY;
     timeTS = new Date().getTime();
+
+    speed[0].time = speed[1].time;
+    speed[0].v = speed[1].v;
+    speed[1].time = timeTS / 60;
+    speed[1].v = e.deltaY / timeScroll;
+
+    console.table(speed);
+    a = (speed[1].v - speed[0].v) / (speed[1].time - speed[0].time);
+    console.log("a", a);
 
     isPhone = true;
   }
@@ -49,6 +69,7 @@ function changeSlide(e) {
   }
 
   const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
+  fullPage.classList.remove("transition");
   if (item) {
     item.click();
     const curBlock = item.closest(".main");
@@ -88,18 +109,31 @@ function changeSlide(e) {
       // clearInterval(interval);
       // let a = e.deltaY;
       // interval = setInterval(() => {
+      //   console.log(a, scroll, timeScroll);
       //   scroll = getS(a, scroll, timeScroll);
       //   scroll = Math.min(maxScroll, scroll);
       //   console.log("scroll", scroll);
-      //   debugger;
       //   fullPage.style.transform = `translateY(-${scroll}px)`;
-      //   a *= 0.9;
-      //   if (a < 10) clearInterval(interval);
-      // }, 10);
+      //   a -= 1;
+      //   console.log(a);
+      //   if (a < 0.1) clearInterval(interval);
+      // }, 1000);
 
+      // clearInterval(timer);
+      // fullPage.classList.remove("transition");
       scroll += e.deltaY;
       scroll = Math.min(maxScroll, scroll);
       fullPage.style.transform = `translateY(-${scroll}px)`;
+      timer = setTimeout(() => {
+        // scroll += (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 0.5);
+        scroll +=
+          (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 2) * 0.05;
+        // scroll += getS(a, timeScroll);
+        // scroll += e.deltaY * a;
+        scroll = Math.min(maxScroll, scroll);
+        fullPage.classList.add("transition");
+        fullPage.style.transform = `translateY(-${scroll}px)`;
+      });
     } else {
       scroll += e.deltaY;
       scroll = Math.min(maxScroll, scroll);
@@ -242,6 +276,6 @@ function changeBgNav() {
   else nav.classList.remove("nav_dark");
 }
 
-function getS(a, s1, t) {
-  return s1 + (a * t * t) / 2;
+function getS(a, t) {
+  return a / 2;
 }

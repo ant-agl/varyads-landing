@@ -71,6 +71,9 @@ body {
 #fullpage {
   overflow: hidden;
 }
+#fullpage.transition {
+  transition: transform 0.6s ease;
+}
 
 .btn {
   border: none;
