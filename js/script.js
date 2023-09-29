@@ -248,10 +248,23 @@ function getS(a, t) {
 }
 
 // adaptive height
-window.addEventListener("resize", function () {
+function resizeHeight() {
   document.body.style.height = document.documentElement.clientHeight + "px";
   document.querySelectorAll(".main").forEach((block) => {
     block.style.height = document.documentElement.clientHeight + "px";
   });
   maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
-});
+
+  if (curIndex < maxIndex) {
+    // tabs
+    const curBlock = document.querySelector(".main.animate");
+    scroll = curBlock.offsetTop;
+  } else {
+    // content
+    scroll = content.offsetTop + content.scrollTop;
+  }
+  fullPage.style.transform = `translateY(-${scroll}px)`;
+  content.style.transform = `translateY(-${scroll}px)`;
+}
+resizeHeight();
+window.addEventListener("resize", resizeHeight);
