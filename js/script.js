@@ -1,4 +1,3 @@
-alert("Work");
 console.log("Start");
 // scroll
 const fullPage = document.querySelector("#fullpage");
@@ -59,16 +58,15 @@ function changeSlide(e) {
     scroll = curBlock.offsetTop;
 
     const oldBlock = document.querySelector(".main.animate");
-    // if (!oldBlock?.isEqualNode(curBlock)) {
-    //   oldBlock?.classList?.remove("animate");
-    //   oldBlock?.classList?.remove("down");
-    //   oldBlock?.classList?.remove("top");
-    //   curBlock?.classList?.add(scrollDirection);
-    //   setTimeout(() => {
-    //     curBlock.classList.add("animate");
-    //   });
-    // }
-    curBlock.classList.add("animate");
+    if (!curBlock.classList.contains("animate")) {
+      oldBlock?.classList?.remove("animate");
+      oldBlock?.classList?.remove("down");
+      oldBlock?.classList?.remove("top");
+      curBlock?.classList?.add(scrollDirection);
+      setTimeout(() => {
+        curBlock.classList.add("animate");
+      });
+    }
 
     if (curIndex >= maxIndex - 1) fullPage.classList.add("transition");
 
