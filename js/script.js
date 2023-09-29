@@ -59,10 +59,10 @@ function changeSlide(e) {
 
     const oldBlock = document.querySelector(".main.animate");
     if (!curBlock.classList.contains("animate")) {
-      oldBlock?.classList?.remove("animate");
-      oldBlock?.classList?.remove("down");
-      oldBlock?.classList?.remove("top");
-      curBlock?.classList?.add(scrollDirection);
+      oldBlock.classList.remove("animate");
+      oldBlock.classList.remove("down");
+      oldBlock.classList.remove("top");
+      curBlock.classList.add(scrollDirection);
       setTimeout(() => {
         curBlock.classList.add("animate");
       });
