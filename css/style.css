@@ -1426,3 +1426,8 @@ body {
     bottom: 0;
   }
 }
+@media (max-width: 350px) {
+  .main__text {
+    margin-top: 5px;
+  }
+}
