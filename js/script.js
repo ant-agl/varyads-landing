@@ -58,7 +58,7 @@ function changeSlide(e) {
     fullPage.style.transform = `translateY(${-scroll}px)`;
     window.scrollTo(0, 0);
 
-    setTimeout(addEvent, 1000);
+    setTimeout(addEvent, 1200);
   } else {
     scroll += e.deltaY;
     const maxScroll =
