@@ -1417,13 +1417,23 @@ body {
     bottom: -55px;
   }
 }
-@media (max-width: 370px) {
+@media (max-width: 375px) {
+  :root {
+    --h1-size: 30px;
+    --h1-height: 30px;
+  }
+  .main__title {
+    letter-spacing: 0;
+  }
   .solutions__img_1 {
     transform: scale(2);
     right: -165px;
   }
   .solutions__img_2 {
     bottom: 0;
+  }
+  .main__text {
+    margin-top: 20px;
   }
 }
 @media (max-width: 350px) {
