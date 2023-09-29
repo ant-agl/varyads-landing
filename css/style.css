@@ -148,6 +148,7 @@ body {
   transition: 0.4s;
   border-bottom: 1px solid #919eab3d;
   background-color: #ffffffcc;
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
 .nav__content {
@@ -534,6 +535,7 @@ body {
 .content {
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
   padding-top: 72px;
   transition: 0.5s;
   transform: translateY(0);
@@ -647,6 +649,16 @@ body {
   transition: 0.2s;
   cursor: pointer;
   opacity: 0;
+}
+.solutions__card-overflow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 40px;
+  overflow: hidden;
+  border-radius: 20px;
 }
 .solutions__card.animate {
   -webkit-animation: fadeDown 0.4s 0.5s ease both;

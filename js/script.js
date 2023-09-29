@@ -5,16 +5,7 @@ let curIndex = 0;
 const minIndex = 0;
 const maxIndex = 11;
 const lastMainBlock = document.querySelectorAll(".main")[2];
-const maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
-const mainSection = document.querySelector(".sections-block");
-// const maxScroll =
-//   Math.max(
-//     fullPage.scrollHeight,
-//     fullPage.offsetHeight,
-//     fullPage.clientHeight
-//   ) +
-//   document.documentElement.clientHeight +
-//   1;
+let maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
 
 let isPhone = false;
 let scrollDirection = "";
@@ -255,3 +246,12 @@ function changeBgNav() {
 function getS(a, t) {
   return a / 2;
 }
+
+// adaptive height
+window.addEventListener("resize", function () {
+  document.body.style.height = document.documentElement.clientHeight + "px";
+  document.querySelectorAll(".main").forEach((block) => {
+    block.style.height = document.documentElement.clientHeight + "px";
+  });
+  maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
+});
