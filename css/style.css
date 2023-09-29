@@ -70,9 +70,10 @@ body {
 }
 #fullpage {
   overflow: hidden;
+  transform: translateY(0);
 }
 #fullpage.transition {
-  transition: transform 0.6s ease;
+  transition: 0.5s;
 }
 
 .btn {
@@ -92,19 +93,19 @@ body {
   background-color: var(--main-color);
 }
 .btn_primary:hover {
-  background-color: #29998c !important;
+  background-color: #0073d8 !important;
 }
 .btn_gree {
   background-color: #00b26b;
 }
 .btn_gree:hover {
-  background-color: #157b53 !important;
+  background-color: #00814e !important;
 }
 .btn_purpure {
   background-color: #8855ff;
 }
 .btn_purpure:hover {
-  background-color: #463470 !important;
+  background-color: #632be7 !important;
 }
 .btn_outline {
   border: 1px solid #919eab;
@@ -144,9 +145,10 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  background-color: #fff;
   transition: 0.4s;
-  box-shadow: 0 0px 10px 0 #fff;
+  border-bottom: 1px solid #919eab3d;
+  background-color: #ffffffcc;
+  backdrop-filter: blur(20px);
 }
 .nav__content {
   display: flex;
@@ -177,8 +179,7 @@ body {
   background-color: var(--bg-hover);
 }
 .nav_dark {
-  background-color: var(--bg-dark);
-  box-shadow: 0 0px 10px 0 var(--bg-dark);
+  background-color: #161c24cc;
 }
 .nav_dark .nav__logo {
   display: none;
@@ -528,6 +529,14 @@ body {
   /* background-color: var(--green-color); */
   background: url(../img/circles/green.png) no-repeat center;
   background-size: contain;
+}
+
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  padding-top: 72px;
+  transition: 0.5s;
+  transform: translateY(0);
 }
 
 .switch {

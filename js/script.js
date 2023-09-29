@@ -1,11 +1,20 @@
 // scroll
 const fullPage = document.querySelector("#fullpage");
+const content = document.querySelector(".content");
 let curIndex = 0;
 const minIndex = 0;
-const maxIndex = 10;
+const maxIndex = 11;
 const lastMainBlock = document.querySelectorAll(".main")[2];
-const maxIndexScroll = lastMainBlock.offsetTop;
+const maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
 const mainSection = document.querySelector(".sections-block");
+// const maxScroll =
+//   Math.max(
+//     fullPage.scrollHeight,
+//     fullPage.offsetHeight,
+//     fullPage.clientHeight
+//   ) +
+//   document.documentElement.clientHeight +
+//   1;
 
 let isPhone = false;
 let scrollDirection = "";
@@ -13,56 +22,15 @@ let scroll = 0;
 let ts = 0;
 let timeTS = 0;
 let timeScroll = 0;
-let interval, timer;
-let speed = [
-  {
-    time: 0,
-    v: 0,
-  },
-  {
-    time: 0,
-    v: 0,
-  },
-];
-let a = 0;
 window.scrollTo(0, 0);
 
-const colorsCircle = [
-  ["blue", "yellow"],
-  ["green", "blue"],
-  ["yellow", "purpure"],
-  ["purpure", "green"],
-  ["yellow", "blue"],
-  ["blue", "green"],
-  ["purpure", "yellow"],
-  ["blue", "purpure"],
-  ["yellow", "green"],
-  ["green", "purpure"],
-  ["blue", "yellow"],
-];
-
-const colors = ["blue", "yellow", "green", "purpure"];
-
 function changeSlide(e) {
-  // console.log(e);
-  console.group();
   isPhone = false;
   if (e.deltaY === undefined) {
     e.deltaY = ts - e.changedTouches[0].clientY;
     timeScroll = (new Date().getTime() - timeTS) / 60;
-    console.log("e.deltaY", e.deltaY);
-    console.log("timeScroll", timeScroll);
     ts = e.changedTouches[0].clientY;
     timeTS = new Date().getTime();
-
-    speed[0].time = speed[1].time;
-    speed[0].v = speed[1].v;
-    speed[1].time = timeTS / 60;
-    speed[1].v = e.deltaY / timeScroll;
-
-    console.table(speed);
-    a = (speed[1].v - speed[0].v) / (speed[1].time - speed[0].time);
-    console.log("a", a);
 
     isPhone = true;
   }
@@ -70,7 +38,7 @@ function changeSlide(e) {
     // down
     scrollDirection = "down";
     curIndex++;
-    if (maxIndexScroll < scroll || curIndex > maxIndex) {
+    if (maxIndexScroll <= scroll || curIndex > maxIndex) {
       curIndex = maxIndex + 1;
     }
   } else {
@@ -79,89 +47,47 @@ function changeSlide(e) {
     curIndex = Math.max(minIndex, curIndex - 1);
     if (maxIndexScroll < scroll) {
       curIndex = maxIndex + 1;
-    } else if (maxIndexScroll <= scroll && curIndex >= maxIndexScroll) {
-      curIndex = maxIndexScroll;
+    } else if (maxIndexScroll >= scroll && curIndex >= maxIndex) {
+      curIndex = maxIndex - 1;
     }
   }
 
+  window.scrollTo(0, 0);
   const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
-  fullPage.classList.remove("transition");
+
   if (item) {
+    // tab change
+    fullPage.classList.remove("transition");
+
     item.click();
-    const curBlock = item.closest(".main");
+    const curBlock = item.closest(".main") || item;
     scroll = curBlock.offsetTop;
 
     const oldBlock = document.querySelector(".main.animate");
-    if (!oldBlock.isEqualNode(curBlock)) {
-      oldBlock.classList.remove("animate");
-      oldBlock.classList.remove("down");
-      oldBlock.classList.remove("top");
-      curBlock.classList.add(scrollDirection);
+    if (!oldBlock?.isEqualNode(curBlock)) {
+      oldBlock?.classList?.remove("animate");
+      oldBlock?.classList?.remove("down");
+      oldBlock?.classList?.remove("top");
+      curBlock?.classList?.add(scrollDirection);
       setTimeout(() => {
         curBlock.classList.add("animate");
       });
     }
 
+    if (curIndex >= maxIndex - 1) fullPage.classList.add("transition");
+
     fullPage.style.transform = `translateY(${-scroll}px)`;
-    window.scrollTo(0, 0);
+    content.style.transform = `translateY(${-scroll}px)`;
 
     if (isPhone) setTimeout(addEvent, 400);
     else setTimeout(addEvent, 1200);
   } else {
-    window.scrollTo(0, 0);
-    const maxScroll =
-      Math.max(
-        fullPage.scrollHeight,
-        document.documentElement.scrollHeight,
-        fullPage.offsetHeight,
-        document.documentElement.offsetHeight,
-        fullPage.clientHeight,
-        document.documentElement.clientHeight
-      ) - document.documentElement.clientHeight;
-
-    if (isPhone) {
-      // scroll += Math.pow(e.deltaY / timeScroll, 2);
-      // scroll += e.deltaY * -Math.log(timeScroll) * 1.2;
-      // clearInterval(interval);
-      // let a = e.deltaY;
-      // interval = setInterval(() => {
-      //   console.log(a, scroll, timeScroll);
-      //   scroll = getS(a, scroll, timeScroll);
-      //   scroll = Math.min(maxScroll, scroll);
-      //   console.log("scroll", scroll);
-      //   fullPage.style.transform = `translateY(-${scroll}px)`;
-      //   a -= 1;
-      //   console.log(a);
-      //   if (a < 0.1) clearInterval(interval);
-      // }, 1000);
-
-      // clearInterval(timer);
-      // fullPage.classList.remove("transition");
-      scroll += e.deltaY;
-      scroll = Math.min(maxScroll, scroll);
-      fullPage.style.transform = `translateY(-${scroll}px)`;
-      // timer = setTimeout(() => {
-      //   // scroll += (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 0.5);
-      //   // scroll +=
-      //   //   (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 2) * 0.05;
-      //   scroll +=
-      //     (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 2) * 0.5;
-      //   // scroll += getS(a, timeScroll);
-      //   // scroll += e.deltaY * a;
-      //   scroll = Math.min(maxScroll, scroll);
-      //   fullPage.classList.add("transition");
-      //   fullPage.style.transform = `translateY(-${scroll}px)`;
-      // });
-    } else {
-      scroll += e.deltaY;
-      scroll = Math.min(maxScroll, scroll);
-      fullPage.style.transform = `translateY(-${scroll}px)`;
-    }
+    // scroll
+    scroll = content.offsetTop + content.scrollTop;
 
     addEvent();
   }
 
-  console.groupEnd();
   changeBgNav();
 }
 addEvent();
@@ -180,6 +106,21 @@ document.addEventListener("touchstart", function (e) {
 });
 
 // switch
+const colorsCircle = [
+  ["blue", "yellow"],
+  ["green", "blue"],
+  ["yellow", "purpure"],
+  ["purpure", "green"],
+  ["yellow", "blue"],
+  ["blue", "green"],
+  ["purpure", "yellow"],
+  ["blue", "purpure"],
+  ["yellow", "green"],
+  ["green", "purpure"],
+  ["blue", "yellow"],
+];
+const colors = ["blue", "yellow", "green", "purpure"];
+
 const slides = document.querySelectorAll(".main__slide");
 const switches = document.querySelectorAll(".switch");
 const mainBlocks = document.querySelectorAll(".main");
@@ -233,10 +174,19 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
     const id = link.getAttribute("href");
-    document.querySelector(id).scrollIntoView({
+
+    let scrollContent = document.querySelector(id).offsetTop;
+    scroll = maxIndexScroll + scrollContent;
+
+    fullPage.classList.add("transition");
+    fullPage.style.transform = `translateY(-${maxIndexScroll}px)`;
+    content.style.transform = `translateY(-${maxIndexScroll}px)`;
+    content.scrollTo({
+      top: scrollContent,
       behavior: "smooth",
     });
-    scroll = document.querySelector(id).offsetTop;
+    curIndex = maxIndex + 1;
+
     changeBgNav();
   });
 });
