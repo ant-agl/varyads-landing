@@ -7,6 +7,7 @@ const lastMainBlock = document.querySelectorAll(".main")[2];
 const maxIndexScroll = lastMainBlock.offsetTop;
 const mainSection = document.querySelector(".sections-block");
 
+let isPhone = false;
 let scrollDirection = "";
 let scroll = 0;
 let ts = 0;
@@ -14,9 +15,12 @@ window.scrollTo(0, 0);
 
 function changeSlide(e) {
   console.log(e);
+  isPhone = false;
   if (e.deltaY === undefined) {
     e.deltaY = ts - e.changedTouches[0].clientY;
-    e.deltaY /= 10;
+    ts = e.changedTouches[0].clientY;
+
+    isPhone = true;
   }
   if (e.deltaY > 0) {
     // down
@@ -58,7 +62,8 @@ function changeSlide(e) {
     fullPage.style.transform = `translateY(${-scroll}px)`;
     window.scrollTo(0, 0);
 
-    setTimeout(addEvent, 1200);
+    if (isPhone) setTimeout(addEvent, 400);
+    else setTimeout(addEvent, 1200);
   } else {
     scroll += e.deltaY;
     const maxScroll =
