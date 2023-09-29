@@ -259,12 +259,15 @@ function resizeHeight() {
     // tabs
     const curBlock = document.querySelector(".main.animate");
     scroll = curBlock.offsetTop;
+    fullPage.style.transform = `translateY(-${scroll}px)`;
+    content.style.transform = `translateY(-${scroll}px)`;
   } else {
     // content
     scroll = content.offsetTop + content.scrollTop;
+    fullPage.style.transform = `translateY(-${content.offsetTop}px)`;
+    content.style.transform = `translateY(-${content.offsetTop}px)`;
+    content.scrollTop = content.scrollTop;
   }
-  fullPage.style.transform = `translateY(-${scroll}px)`;
-  content.style.transform = `translateY(-${scroll}px)`;
 }
 resizeHeight();
 window.addEventListener("resize", resizeHeight);
