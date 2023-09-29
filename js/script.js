@@ -1,3 +1,5 @@
+alert("Work");
+console.log("Start");
 // scroll
 const fullPage = document.querySelector("#fullpage");
 const content = document.querySelector(".content");
@@ -6,6 +8,7 @@ const minIndex = 0;
 const maxIndex = 11;
 const lastMainBlock = document.querySelectorAll(".main")[2];
 let maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
+console.log(fullPage, content, lastMainBlock, maxIndexScroll);
 
 let isPhone = false;
 let scrollDirection = "";
@@ -16,6 +19,7 @@ let timeScroll = 0;
 window.scrollTo(0, 0);
 
 function changeSlide(e) {
+  console.log(e);
   isPhone = false;
   if (e.deltaY === undefined) {
     e.deltaY = ts - e.changedTouches[0].clientY;
@@ -45,7 +49,7 @@ function changeSlide(e) {
 
   window.scrollTo(0, 0);
   const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
-
+  console.log(item);
   if (item) {
     // tab change
     fullPage.classList.remove("transition");
@@ -78,6 +82,7 @@ function changeSlide(e) {
 
     addEvent();
   }
+  console.log(scroll);
 
   changeBgNav();
 }
@@ -86,6 +91,7 @@ addEvent();
 function addEvent() {
   const events = ["wheel", "touchmove"];
   events.forEach((event) => {
+    console.log("addEvent");
     document.addEventListener(event, changeSlide, {
       once: true,
     });
@@ -198,7 +204,9 @@ const nav = document.querySelector(".nav");
 const navBtn = document.querySelector(".nav__mobile-btn");
 const navMobile = document.querySelector(".nav_mobile");
 const navLinks = document.querySelectorAll(".nav__link");
+console.log(nav, navBtn, navMobile, navLinks);
 navBtn.addEventListener("click", function () {
+  console.log("click menu");
   if (!navMobile.classList.contains("active")) {
     navBtn.classList.add("active");
     navMobile.classList.add("active");
@@ -241,10 +249,6 @@ function changeBgNav() {
 
   if (scroll >= start && scroll <= end) nav.classList.add("nav_dark");
   else nav.classList.remove("nav_dark");
-}
-
-function getS(a, t) {
-  return a / 2;
 }
 
 // adaptive height
