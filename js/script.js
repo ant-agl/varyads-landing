@@ -11,14 +11,21 @@ let isPhone = false;
 let scrollDirection = "";
 let scroll = 0;
 let ts = 0;
+let timeTS = 0;
+let timeScroll = 0;
 window.scrollTo(0, 0);
 
 function changeSlide(e) {
-  console.log(e);
+  // console.log(e);
+  console.group();
   isPhone = false;
   if (e.deltaY === undefined) {
     e.deltaY = ts - e.changedTouches[0].clientY;
+    timeScroll = (new Date().getTime() - timeTS) / 60;
+    console.log("e.deltaY", e.deltaY);
+    console.log("timeScroll", timeScroll);
     ts = e.changedTouches[0].clientY;
+    timeTS = new Date().getTime();
 
     isPhone = true;
   }
@@ -33,14 +40,12 @@ function changeSlide(e) {
     // top
     scrollDirection = "top";
     curIndex = Math.max(minIndex, curIndex - 1);
-    console.log(curIndex);
     if (maxIndexScroll < scroll) {
       curIndex = maxIndex + 1;
     } else if (maxIndexScroll <= scroll && curIndex >= maxIndexScroll) {
       curIndex = maxIndexScroll;
     }
   }
-  console.log(curIndex);
 
   const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
   if (item) {
@@ -65,7 +70,14 @@ function changeSlide(e) {
     if (isPhone) setTimeout(addEvent, 400);
     else setTimeout(addEvent, 1200);
   } else {
-    scroll += e.deltaY;
+    if (isPhone) {
+      // scroll += Math.pow(e.deltaY / timeScroll, 2);
+      scroll += e.deltaY * -Math.log(timeScroll);
+      console.log("scroll", scroll);
+    } else {
+      scroll += e.deltaY;
+    }
+
     const maxScroll =
       Math.max(
         fullPage.scrollHeight,
@@ -78,11 +90,13 @@ function changeSlide(e) {
     scroll = Math.min(maxScroll, scroll);
 
     window.scrollTo(0, 0);
+
     fullPage.style.transform = `translateY(-${scroll}px)`;
 
     addEvent();
   }
 
+  console.groupEnd();
   changeBgNav();
 }
 addEvent();
@@ -97,6 +111,7 @@ function addEvent() {
 }
 document.addEventListener("touchstart", function (e) {
   ts = e.changedTouches[0].clientY;
+  timeTS = new Date().getTime();
 });
 
 // switch
