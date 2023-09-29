@@ -63,6 +63,14 @@ html * {
   text-decoration: none;
 }
 
+body {
+  overflow: hidden;
+  height: 100vh;
+}
+#fullpage {
+  overflow: hidden;
+}
+
 .btn {
   border: none;
   border-radius: 16px;
@@ -80,19 +88,19 @@ html * {
   background-color: var(--main-color);
 }
 .btn_primary:hover {
-  background-color: #29998c;
+  background-color: #29998c !important;
 }
 .btn_gree {
   background-color: #00b26b;
 }
 .btn_gree:hover {
-  background-color: #157b53;
+  background-color: #157b53 !important;
 }
 .btn_purpure {
   background-color: #8855ff;
 }
 .btn_purpure:hover {
-  background-color: #463470;
+  background-color: #463470 !important;
 }
 .btn_outline {
   border: 1px solid #919eab;
@@ -100,7 +108,7 @@ html * {
   color: #919eab;
 }
 .btn_outline:hover {
-  background-color: #919eab;
+  background-color: #919eab !important;
   color: #fff;
 }
 
@@ -343,9 +351,9 @@ html * {
 .main {
   position: relative;
   overflow: hidden;
-  background-color: #fff;
   padding-top: 72px;
   height: 100vh;
+  background-color: #fff;
 }
 .main__text {
   display: flex;
@@ -354,7 +362,6 @@ html * {
   gap: 32px;
   width: 1128px;
   margin: 0 auto;
-  /* margin-top: 120px; */
   margin-top: 75px;
   position: relative;
   z-index: 2;
@@ -367,10 +374,6 @@ html * {
   text-align: center;
   opacity: 0;
 }
-.main__title.animate {
-  -webkit-animation: fadeIn 0.5s ease 0.3s both;
-  animation: fadeIn 0.5s ease 0.3s both;
-}
 .main__desc {
   font-size: var(--main-desc-size);
   line-height: var(--main-desc-height);
@@ -378,10 +381,6 @@ html * {
   letter-spacing: -0.2px;
   text-align: center;
   opacity: 0;
-}
-.main__desc.animate {
-  -webkit-animation: fadeIn 0.5s ease 0.5s both;
-  animation: fadeIn 0.5s ease 0.5s both;
 }
 .main__images {
   position: absolute;
@@ -410,6 +409,81 @@ html * {
 .main_black .main__title,
 .main_black .main__desc {
   color: #fff;
+}
+
+/* animate main */
+.main.animate,
+.main.animate .btn,
+.main.animate .circle {
+  transition: 0.4s;
+}
+.main.animate .circle {
+  transition: 0.6s;
+}
+.main .btn,
+.main .circle {
+  transition: 0s;
+}
+.main.animate .main__title {
+  -webkit-animation: fadeIn 0.5s ease 0.3s both;
+  animation: fadeIn 0.5s ease 0.3s both;
+}
+.main.animate .main__desc {
+  -webkit-animation: fadeIn 0.5s ease 0.5s both;
+  animation: fadeIn 0.5s ease 0.5s both;
+}
+.main .circle {
+  opacity: 0;
+}
+.main.down .circle_down,
+.main.top .circle_down {
+  opacity: 1;
+}
+.main.animate .circle_down {
+  opacity: 0;
+}
+.main.animate .circle_main {
+  opacity: 1;
+}
+
+/* 1 */
+.main.top:nth-child(1) {
+  background-color: var(--bg-dark);
+}
+.main.animate.top:nth-child(1) {
+  background-color: #fff;
+}
+.main.top:nth-child(1) .btn {
+  background-color: #00b26b;
+}
+.main.top.animate:nth-child(1) .btn {
+  background-color: var(--main-color);
+}
+
+/* 2 */
+.main.down:nth-child(2) {
+  background-color: #fff;
+}
+.main.animate.down:nth-child(2) {
+  background-color: var(--bg-dark);
+}
+.main.down:nth-child(2) .btn {
+  background-color: var(--main-color);
+}
+.main.top:nth-child(2) .btn {
+  background-color: #8855ff;
+}
+.main.down.animate:nth-child(2) .btn,
+.main.top.animate:nth-child(2) .btn {
+  background-color: #00b26b;
+}
+
+/* 3 */
+.main.down:nth-child(3) .btn {
+  background-color: #00b26b;
+}
+.main.down.animate:nth-child(3) .btn {
+  background-color: #8855ff;
 }
 
 .circle {

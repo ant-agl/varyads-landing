@@ -1,97 +1,6 @@
-// scroll
-const fullPage = document.querySelector("#fullpage");
-let curIndex = 0;
-const minIndex = 0;
-const maxIndex = 10;
-const lastMainBlock = document.querySelectorAll(".main")[2];
-const maxIndexScroll = lastMainBlock.offsetTop;
-const mainSection = document.querySelector(".sections-block");
-
-let scrollDirection = "";
-let scroll = 0;
-let ts = 0;
-window.scrollTo(0, 0);
-
-function changeSlide(e) {
-  console.log(e);
-  if (e.deltaY === undefined) {
-    e.deltaY = ts - e.changedTouches[0].clientY;
-    e.deltaY /= 10;
-  }
-  if (e.deltaY > 0) {
-    // down
-    scrollDirection = "down";
-    curIndex++;
-    if (maxIndexScroll < scroll || curIndex > maxIndex) {
-      curIndex = maxIndex + 1;
-    }
-  } else {
-    // top
-    scrollDirection = "top";
-    curIndex = Math.max(minIndex, curIndex - 1);
-    console.log(curIndex);
-    if (maxIndexScroll < scroll) {
-      curIndex = maxIndex + 1;
-    } else if (maxIndexScroll <= scroll && curIndex >= maxIndexScroll) {
-      curIndex = maxIndexScroll;
-    }
-  }
-  console.log(curIndex);
-
-  const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
-  if (item) {
-    item.click();
-    const curBlock = item.closest(".main");
-    scroll = curBlock.offsetTop;
-
-    const oldBlock = document.querySelector(".main.animate");
-    if (!oldBlock.isEqualNode(curBlock)) {
-      oldBlock.classList.remove("animate");
-      oldBlock.classList.remove("down");
-      oldBlock.classList.remove("top");
-      curBlock.classList.add(scrollDirection);
-      setTimeout(() => {
-        curBlock.classList.add("animate");
-      });
-    }
-
-    fullPage.style.transform = `translateY(${-scroll}px)`;
-    window.scrollTo(0, 0);
-
-    setTimeout(addEvent, 1000);
-  } else {
-    scroll += e.deltaY;
-    const maxScroll =
-      Math.max(
-        fullPage.scrollHeight,
-        document.documentElement.scrollHeight,
-        fullPage.offsetHeight,
-        document.documentElement.offsetHeight,
-        fullPage.clientHeight,
-        document.documentElement.clientHeight
-      ) - document.documentElement.clientHeight;
-    scroll = Math.min(maxScroll, scroll);
-
-    window.scrollTo(0, 0);
-    fullPage.style.transform = `translateY(-${scroll}px)`;
-
-    addEvent();
-  }
-
-  changeBgNav();
-}
-addEvent();
-
-function addEvent() {
-  const events = ["wheel", "touchmove"];
-  events.forEach((event) => {
-    document.addEventListener(event, changeSlide, {
-      once: true,
-    });
-  });
-}
-document.addEventListener("touchstart", function (e) {
-  ts = e.changedTouches[0].clientY;
+// fullPage
+var myFullpage = new fullpage("#fullpage", {
+  licenseKey: "gplv3-license",
 });
 
 // switch
@@ -136,6 +45,19 @@ function calcSwitchSelect(switchSelect, switchActive) {
   switchSelect.style.left = switchActive.offsetLeft + "px";
 }
 
+document.addEventListener("scroll", function (e) {
+  const startBlack = document.querySelector(".main_black");
+  const endBlack = document.querySelectorAll(".main_black")[1];
+
+  const navH = nav.clientHeight;
+  let start = startBlack.offsetTop - navH / 2;
+  let end = endBlack.offsetTop + endBlack.clientHeight - navH / 2;
+  let scroll = window.scrollY;
+
+  if (scroll >= start && scroll <= end) nav.classList.add("nav_dark");
+  else nav.classList.remove("nav_dark");
+});
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
@@ -143,8 +65,6 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     document.querySelector(id).scrollIntoView({
       behavior: "smooth",
     });
-    scroll = document.querySelector(id).offsetTop;
-    changeBgNav();
   });
 });
 
@@ -195,16 +115,4 @@ if (!localStorage.privacyHide) {
 function hidePrivacy() {
   localStorage.privacyHide = true;
   privacy.classList.add("hide");
-}
-
-function changeBgNav() {
-  const startBlack = document.querySelector(".main_black");
-  const endBlack = document.querySelectorAll(".main_black")[1];
-
-  const navH = nav.clientHeight;
-  let start = startBlack.offsetTop - navH / 2;
-  let end = endBlack.offsetTop + endBlack.clientHeight - navH / 2;
-
-  if (scroll >= start && scroll <= end) nav.classList.add("nav_dark");
-  else nav.classList.remove("nav_dark");
 }
