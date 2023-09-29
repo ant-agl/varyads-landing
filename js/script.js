@@ -126,8 +126,10 @@ function changeSlide(e) {
       fullPage.style.transform = `translateY(-${scroll}px)`;
       timer = setTimeout(() => {
         // scroll += (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 0.5);
+        // scroll +=
+        //   (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 2) * 0.05;
         scroll +=
-          (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 2) * 0.05;
+          (e.deltaY < 0 ? -1 : 1) * Math.pow(Math.abs(e.deltaY), 2) * 0.5;
         // scroll += getS(a, timeScroll);
         // scroll += e.deltaY * a;
         scroll = Math.min(maxScroll, scroll);
