@@ -420,14 +420,20 @@ body {
 /* animate main */
 .main.animate,
 .main.animate .btn,
-.main.animate .circle {
+.main.animate .circle,
+.main.animate .switch {
   transition: 0.4s;
+}
+.main.animate .main__images {
+  transition: 0.2s;
 }
 .main.animate .circle {
   transition: 0.6s;
 }
 .main .btn,
-.main .circle {
+.main .circle,
+.main .main__images,
+.main .switch {
   transition: 0s;
 }
 .main.animate .main__title {
@@ -449,6 +455,15 @@ body {
   opacity: 0;
 }
 .main.animate .circle_main {
+  opacity: 1;
+}
+
+.main .main__images,
+.main .switch {
+  opacity: 0;
+}
+.main.animate .main__images,
+.main.animate .switch {
   opacity: 1;
 }
 
@@ -1336,6 +1351,9 @@ body {
   }
   .switch__item {
     padding: 12px;
+  }
+  .solutions {
+    padding: 40px 0;
   }
   .solutions__img_1 {
     transform: scale(1.3);

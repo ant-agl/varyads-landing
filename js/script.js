@@ -165,7 +165,8 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     e.preventDefault();
     const id = link.getAttribute("href");
 
-    let scrollContent = document.querySelector(id).offsetTop;
+    const hNav = document.querySelector(".nav").clientHeight;
+    let scrollContent = document.querySelector(id).offsetTop - hNav;
     scroll = maxIndexScroll + scrollContent;
 
     fullPage.classList.add("transition");
