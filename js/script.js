@@ -8,7 +8,7 @@ const lastMainBlock = document.querySelectorAll(".main")[2];
 let maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
 
 let isPhone = false;
-let scrollDirection = "";
+let scrollDirection = "down";
 let scroll = 0;
 let ts = 0;
 let timeTS = 0;
@@ -45,6 +45,25 @@ function changeSlide(e) {
   }
 
   window.scrollTo(0, 0);
+  goToIndex(curIndex);
+}
+addEvent();
+
+function addEvent() {
+  const events = ["wheel", "touchmove"];
+  events.forEach((event) => {
+    document.addEventListener(event, changeSlide, {
+      once: true,
+    });
+  });
+}
+document.addEventListener("touchstart", function (e) {
+  ts = e.changedTouches[0].clientY;
+  timeTS = new Date().getTime();
+});
+
+function goToIndex(index) {
+  curIndex = index;
   const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
   if (item) {
     // tab change
@@ -106,30 +125,19 @@ function changeSlide(e) {
 
   changeBgNav();
 }
-addEvent();
-
-function addEvent() {
-  const events = ["wheel", "touchmove"];
-  events.forEach((event) => {
-    document.addEventListener(event, changeSlide, {
-      once: true,
-    });
-  });
-}
-document.addEventListener("touchstart", function (e) {
-  ts = e.changedTouches[0].clientY;
-  timeTS = new Date().getTime();
-});
 
 // switch
 const colorsCircle = [
   ["blue", "yellow"],
+  ["blue", "yellow"],
   ["green", "blue"],
   ["yellow", "purpure"],
+  ["purpure", "green"],
   ["purpure", "green"],
   ["yellow", "blue"],
   ["blue", "green"],
   ["purpure", "yellow"],
+  ["blue", "purpure"],
   ["blue", "purpure"],
   ["yellow", "green"],
   ["green", "purpure"],
@@ -209,6 +217,13 @@ function calcSwitchSelect(switchSelect, switchActive) {
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
+
+    if (link.hasAttribute("data-to-slide")) {
+      const toSlide = link.getAttribute("data-to-slide");
+      goToIndex(toSlide);
+      return;
+    }
+
     const id = link.getAttribute("href");
 
     const hNav = document.querySelector(".nav").clientHeight;
@@ -225,6 +240,10 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     curIndex = maxIndex + 1;
 
     changeBgNav();
+
+    document.querySelectorAll(".main.animate").forEach((item) => {
+      item.classList.remove("animate");
+    });
   });
 });
 
