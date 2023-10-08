@@ -64,6 +64,13 @@ function changeSlide(e) {
     } else {
       isSlide = true;
       item.click();
+      const target = item.getAttribute("data-target");
+      if (videoSlides.indexOf(target) !== -1) {
+        let video = document.querySelector(`video[data-id="${target}"]`);
+        if (!video) return;
+        video.currentTime = 0;
+        video.play();
+      }
     }
 
     const curBlock = item.closest(".main") || item;
