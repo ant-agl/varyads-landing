@@ -393,12 +393,16 @@ body {
   text-align: center;
   opacity: 0;
 }
+.main .btn {
+  opacity: 0;
+}
 .main__slide-text {
   display: none;
   flex-direction: column;
   gap: 8px;
   align-items: center;
   margin-top: 40px;
+  opacity: 0;
 }
 .main__slide-text.active {
   display: flex;
@@ -433,20 +437,30 @@ body {
   width: var(--slide-w);
   height: var(--slide-h);
   left: 50%;
-  transform: translateX(-50%);
+  margin-left: calc(var(--slide-w) / -2);
+  transform: perspective(1200px) translateX(0) translateY(0.797101px)
+    scale(0.930676) rotate(0deg) rotateX(10.3986deg) rotateY(0deg)
+    translateZ(0px);
   z-index: 2;
+}
+.main.slide-active .main__images {
+  transform: perspective(1200px) translateX(0) translateY(8.95px) scale(1)
+    rotate(0deg) rotateX(0deg) rotateY(0deg) translateZ(0px);
 }
 .main__slide {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  /* width: 100%; */
   opacity: 0;
   transition: 0.4s;
   border: 8px solid #0000001a;
   border-radius: 16px;
   overflow: hidden;
+  max-height: 100%;
+  width: auto;
+  margin: 0 auto;
 }
 .main.slide-active .main__images {
   bottom: 0;
@@ -468,7 +482,6 @@ body {
 
 /* animate main */
 .main.animate,
-.main.animate .btn,
 .main.animate .circle,
 .main.animate .switch {
   transition: 0.4s;
@@ -479,7 +492,7 @@ body {
 .main.animate .circle {
   transition: 0.6s;
 }
-.main .btn,
+
 .main .circle,
 .main .main__images,
 .main .switch {
@@ -492,6 +505,10 @@ body {
 .main.animate .main__desc {
   -webkit-animation: fadeIn 0.5s ease 0.4s both;
   animation: fadeIn 0.5s ease 0.4s both;
+}
+.main.animate .btn {
+  -webkit-animation: fadeIn 1s ease 0.2s both;
+  animation: fadeIn 1s ease 0.2s both;
 }
 .main.animate.slide-active .main__slide-text.active {
   -webkit-animation: fadeIn 0.5s ease both;
@@ -527,12 +544,12 @@ body {
 .main.animate.top:nth-child(1) {
   background-color: #fff;
 }
-.main.top:nth-child(1) .btn {
+/* .main.top:nth-child(1) .btn {
   background-color: #00b26b;
 }
 .main.top.animate:nth-child(1) .btn {
   background-color: var(--main-color);
-}
+} */
 
 /* 2 */
 .main.down:nth-child(2) {
@@ -541,7 +558,7 @@ body {
 .main.animate.down:nth-child(2) {
   background-color: var(--bg-dark);
 }
-.main.down:nth-child(2) .btn {
+/* .main.down:nth-child(2) .btn {
   background-color: var(--main-color);
 }
 .main.top:nth-child(2) .btn {
@@ -550,15 +567,15 @@ body {
 .main.down.animate:nth-child(2) .btn,
 .main.top.animate:nth-child(2) .btn {
   background-color: #00b26b;
-}
+} */
 
 /* 3 */
-.main.down:nth-child(3) .btn {
+/* .main.down:nth-child(3) .btn {
   background-color: #00b26b;
 }
 .main.down.animate:nth-child(3) .btn {
   background-color: #8855ff;
-}
+} */
 
 .circle {
   position: absolute;
