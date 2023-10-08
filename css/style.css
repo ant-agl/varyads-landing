@@ -168,6 +168,11 @@ body {
   gap: 16px;
   align-items: center;
 }
+.nav__btns-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .nav__link {
   padding: 12px 16px;
   border-radius: 12px;
@@ -388,6 +393,40 @@ body {
   text-align: center;
   opacity: 0;
 }
+.main__slide-text {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin-top: 40px;
+}
+.main__slide-text.active {
+  display: flex;
+}
+.main__slide-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+.main__slide-desc {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  color: #637381;
+  text-align: center;
+}
+.main_black .main__slide-title {
+  color: #fff;
+}
+.main_black .main__slide-desc {
+  color: #919eab;
+}
+.main.slide-active .main__text {
+  display: none;
+}
 .main__images {
   position: absolute;
   bottom: var(--slide-bottom);
@@ -405,6 +444,16 @@ body {
   width: 100%;
   opacity: 0;
   transition: 0.4s;
+  border: 8px solid #0000001a;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.main.slide-active .main__images {
+  bottom: 0;
+}
+.main.slide-active .main__slide {
+  top: auto;
+  bottom: 0;
 }
 .main__slide.active {
   opacity: 1;
@@ -437,12 +486,16 @@ body {
   transition: 0s;
 }
 .main.animate .main__title {
-  -webkit-animation: fadeIn 0.5s ease 0.3s both;
-  animation: fadeIn 0.5s ease 0.3s both;
+  -webkit-animation: fadeIn 0.5s ease 0.2s both;
+  animation: fadeIn 0.5s ease 0.2s both;
 }
 .main.animate .main__desc {
-  -webkit-animation: fadeIn 0.5s ease 0.5s both;
-  animation: fadeIn 0.5s ease 0.5s both;
+  -webkit-animation: fadeIn 0.5s ease 0.4s both;
+  animation: fadeIn 0.5s ease 0.4s both;
+}
+.main.animate.slide-active .main__slide-text.active {
+  -webkit-animation: fadeIn 0.5s ease both;
+  animation: fadeIn 0.5s ease both;
 }
 .main .circle {
   opacity: 0;
@@ -1272,6 +1325,14 @@ body {
     display: none;
   }
 }
+@media (max-width: 1390px) {
+  .nav-pc {
+    display: none;
+  }
+  .nav__mobile-btn {
+    display: block;
+  }
+}
 @media (max-width: 850px) {
   :root {
     --desc-big-size: 28px;
@@ -1295,12 +1356,6 @@ body {
   .footer__footer {
     flex-direction: column;
     gap: 16px;
-  }
-  .nav-pc {
-    display: none;
-  }
-  .nav__mobile-btn {
-    display: block;
   }
 }
 @media (max-width: 690px) {

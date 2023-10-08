@@ -3,7 +3,7 @@ const fullPage = document.querySelector("#fullpage");
 const content = document.querySelector(".content");
 let curIndex = 0;
 const minIndex = 0;
-const maxIndex = 11;
+const maxIndex = 14;
 const lastMainBlock = document.querySelectorAll(".main")[2];
 let maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
 
@@ -13,6 +13,7 @@ let scroll = 0;
 let ts = 0;
 let timeTS = 0;
 let timeScroll = 0;
+const videoSlides = ["video"];
 window.scrollTo(0, 0);
 
 function changeSlide(e) {
@@ -49,8 +50,26 @@ function changeSlide(e) {
     // tab change
     fullPage.classList.remove("transition");
 
-    item.click();
+    let isSlide = false;
+    if (item.classList.contains("main")) {
+      item.classList.remove("slide-active");
+      let slideActive = item.querySelector(".main__slide-text.active");
+      if (slideActive) slideActive.classList.remove("active");
+
+      let switchActive = item.querySelector(".switch__item.active");
+      if (switchActive) {
+        switchActive.classList.remove("active");
+        calcSwitchSelect(item.querySelector(".switch__select"), false);
+      }
+    } else {
+      isSlide = true;
+      item.click();
+    }
+
     const curBlock = item.closest(".main") || item;
+    if (curBlock.classList.contains("main") && isSlide) {
+      curBlock.classList.add("slide-active");
+    }
     scroll = curBlock.offsetTop;
 
     const oldBlock = document.querySelector(".main.animate") || content;
@@ -123,7 +142,8 @@ mainBlocks.forEach((mainBlock) => {
 
   switchItems.forEach((sItem) => {
     sItem.addEventListener("click", function () {
-      s.querySelector(".switch__item.active").classList.remove("active");
+      let sItemActive = s.querySelector(".switch__item.active");
+      if (sItemActive) sItemActive.classList.remove("active");
       sItem.classList.add("active");
       calcSwitchSelect(switchSelect, sItem);
 
@@ -131,8 +151,14 @@ mainBlocks.forEach((mainBlock) => {
       const target = sItem.getAttribute("data-target");
       const index = sItem.getAttribute("data-index-slide");
       curIndex = index;
-      mainBlock.querySelector(".main__slide.active").classList.remove("active");
-      document.getElementById(target).classList.add("active");
+      mainBlock
+        .querySelectorAll(`.main__slide-text.active, .main__slide.active`)
+        .forEach((item) => {
+          item.classList.remove("active");
+        });
+      mainBlock.querySelectorAll(`[data-id="${target}"]`).forEach((item) => {
+        item.classList.add("active");
+      });
 
       mainBlock.querySelectorAll(".circle").forEach((circle, i) => {
         colors.forEach((color) => {
@@ -141,6 +167,14 @@ mainBlocks.forEach((mainBlock) => {
 
         circle.classList.add("circle_" + colorsCircle[curIndex][i]);
       });
+      mainBlock.classList.add("slide-active");
+
+      if (videoSlides.indexOf(target) !== -1) {
+        let video = mainBlock.querySelector(`video[data-id="${target}"]`);
+        if (!video) return;
+        video.currentTime = 0;
+        video.play();
+      }
 
       switchSelect.classList.add("animate");
       setTimeout(() => {
@@ -154,6 +188,11 @@ mainBlocks.forEach((mainBlock) => {
 });
 
 function calcSwitchSelect(switchSelect, switchActive) {
+  if (!switchActive) {
+    switchSelect.style.opacity = 0;
+    return;
+  }
+  switchSelect.style.opacity = 1;
   switchSelect.style.width = switchActive.clientWidth + "px";
   switchSelect.style.height = switchActive.clientHeight + "px";
   switchSelect.style.top = switchActive.offsetTop + "px";

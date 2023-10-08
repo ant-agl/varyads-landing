@@ -27,8 +27,13 @@
           <img src="./img/logo-light.png" alt="VaryAds">
         </div>
         <div class="nav__btns">
-          <a href="#solutions" class="nav__link nav-pc">Solutions</a>
-          <a href="#contacts" class="nav__link nav-pc">Contacts</a>
+          <div class="nav__btns-links">
+            <a href="#visual" class="nav__link nav-pc">Visual Ad Studio</a>
+            <a href="#personalization" class="nav__link nav-pc">Ads personalisation</a>
+            <a href="#delivery" class="nav__link nav-pc">Ad delivery optimisation</a>
+            <a href="#solutions" class="nav__link nav-pc">Solutions</a>
+            <a href="#contacts" class="nav__link nav-pc">Contacts</a>
+          </div>
           <div class="lang nav-pc">
             <div class="lang__select">
               <img src="./img/flags/en.png" alt="en">
@@ -47,16 +52,20 @@
             </div>
           </div>
           <a href="#" class="nav__link nav-pc">Sign in</a>
+          <a href="#" class="btn btn_primary">Get started</a>
           <button class="nav__mobile-btn">
             <img src="./img/icons/menu.svg" alt="menu">
             <div class="cross"></div>
           </button>
-          <a href="#" class="btn btn_primary">Get started</a>
         </div>
       </div>
     </div>
   </div>
   <div class="nav_mobile">
+
+    <a href="#visual" class="nav__link">Visual Ad Studio</a>
+    <a href="#personalization" class="nav__link">Ads personalisation</a>
+    <a href="#delivery" class="nav__link">Ad delivery optimisation</a>
     <a href="#solutions" class="nav__link">Solutions</a>
     <a href="#contacts" class="nav__link">Contacts</a>
     <div class="lang">
@@ -81,35 +90,50 @@
   <div id="fullpage">
 
     <div class="sections-block">
-      <section class="main animate">
+      <section class="main animate" data-index-slide="0">
         <div class="container">
           <div class="main__text">
             <div class="main__title">Scale up and cut the costs on ads production</div>
-            <div class="main__desc">Build one template in Visual Ad Studio<br>and get many ads variations with just
-              a
-              click.
+            <div class="main__desc">
+              Build one template in Visual Ad Studio<br>and get many ads variations with just a click.
             </div>
             <a href="#" class="btn btn_primary">Get started</a>
           </div>
-          <div class="main__images">
-            <img src="./img/slides/1.png" alt="html5" class="main__slide active" id="html5">
-            <img src="./img/slides/2.png" alt="image" class="main__slide" id="image">
-            <img src="./img/slides/3.png" alt="video" class="main__slide" id="video">
+
+          <div class="main__slide-text" data-id="html5">
+            <h2 class="main__slide-title">HTML5</h2>
+            <p class="main__slide-desc">Animated HTML5 ads for DSP as a tag or zip file</p>
           </div>
+          <div class="main__slide-text" data-id="image">
+            <h2 class="main__slide-title">Image</h2>
+            <p class="main__slide-desc">Images of any sizes for the most popular ad networks</p>
+          </div>
+          <div class="main__slide-text" data-id="video">
+            <h2 class="main__slide-title">Video</h2>
+            <p class="main__slide-desc">Portrait or landscape videos for in-banner or in-stream</p>
+          </div>
+
+          <div class="main__images">
+            <img src="./img/slides/1.png" alt="html5" class="main__slide active" data-id="html5">
+            <img src="./img/slides/2.png" alt="image" class="main__slide" data-id="image">
+            <!-- <img src="./img/slides/3.png" alt="video" class="main__slide" data-id="video"> -->
+            <video class="main__slide" poster="./img/slides/3.png" data-id="video">
+              <source src="./img/slides/3.mov" type="video/mp4">
+            </video>
+          </div>
+
           <div class="switch">
-            <div class="switch__item active" data-target="html5" data-index-slide="0">HTML5</div>
-            <div class="switch__item" data-target="image" data-index-slide="1">Image</div>
-            <div class="switch__item" data-target="video" data-index-slide="2">Video</div>
+            <div class="switch__item" data-target="html5" data-index-slide="1">HTML5</div>
+            <div class="switch__item" data-target="image" data-index-slide="2">Image</div>
+            <div class="switch__item" data-target="video" data-index-slide="3">Video</div>
             <div class="switch__select"></div>
           </div>
         </div>
         <div class="circle circle_main circle_left circle_blue"></div>
         <div class="circle circle_main circle_right circle_yellow"></div>
-
-        <!-- <div class="circle circle_top circle_left circle_purpure"></div>
-        <div class="circle circle_top circle_right circle_green"></div> -->
       </section>
-      <section class="main main_black">
+
+      <section class="main main_black" data-index-slide="4">
         <div class="container">
           <div class="main__text">
             <div class="main__title">Harness the power of personalization</div>
@@ -118,30 +142,43 @@
             </div>
             <a href="#" class="btn btn_gree">Get started</a>
           </div>
-          <div class="main__images">
-            <img src="./img/slides/4.png" alt="location" class="main__slide active" id="location">
-            <img src="./img/slides/5.png" alt="weather" class="main__slide" id="weather">
-            <img src="./img/slides/6.png" alt="segment" class="main__slide" id="segment">
-            <img src="./img/slides/7.png" alt="trends" class="main__slide" id="trends">
+
+          <div class="main__slide-text" data-id="location">
+            <h2 class="main__slide-title">Location</h2>
+            <p class="main__slide-desc">Change content based on user location</p>
           </div>
+          <div class="main__slide-text" data-id="weather">
+            <h2 class="main__slide-title">Weather</h2>
+            <p class="main__slide-desc">Show different elements depending on weather</p>
+          </div>
+          <div class="main__slide-text" data-id="segment">
+            <h2 class="main__slide-title">Segments</h2>
+            <p class="main__slide-desc">Set up content triggers for various audience segments</p>
+          </div>
+          <div class="main__slide-text" data-id="trends">
+            <h2 class="main__slide-title">Trends</h2>
+            <p class="main__slide-desc">Change ad content when something is in trend</p>
+          </div>
+
+          <div class="main__images">
+            <img src="./img/slides/4.png" alt="location" class="main__slide active" data-id="location">
+            <img src="./img/slides/5.png" alt="weather" class="main__slide" data-id="weather">
+            <img src="./img/slides/6.png" alt="segment" class="main__slide" data-id="segment">
+            <img src="./img/slides/7.png" alt="trends" class="main__slide" data-id="trends">
+          </div>
+
           <div class="switch">
-            <div class="switch__item active" data-target="location" data-index-slide="3">Location</div>
-            <div class="switch__item" data-target="weather" data-index-slide="4">Weather</div>
-            <div class="switch__item" data-target="segment" data-index-slide="5">Segment</div>
-            <div class="switch__item" data-target="trends" data-index-slide="6">Trends</div>
+            <div class="switch__item active" data-target="location" data-index-slide="5">Location</div>
+            <div class="switch__item" data-target="weather" data-index-slide="6">Weather</div>
+            <div class="switch__item" data-target="segment" data-index-slide="7">Segment</div>
+            <div class="switch__item" data-target="trends" data-index-slide="8">Trends</div>
             <div class="switch__select"></div>
           </div>
         </div>
         <div class="circle circle_main circle_left circle_purpure"></div>
         <div class="circle circle_main circle_right circle_green"></div>
-
-        <!-- <div class="circle circle_top circle_left circle_blue"></div>
-        <div class="circle circle_top circle_right circle_yellow"></div>
-
-        <div class="circle circle_down circle_left circle_blue"></div>
-        <div class="circle circle_down circle_right circle_purpure"></div> -->
       </section>
-      <section class="main main_black">
+      <section class="main main_black" data-index-slide="9">
         <div class="container">
           <div class="main__text">
             <div class="main__title">Grow campaigns efficiency with auto-A/B testing</div>
@@ -149,17 +186,36 @@
               automatically.</div>
             <a href="#" class="btn btn_purpure">Get started</a>
           </div>
-          <div class="main__images">
-            <img src="./img/slides/8.png" alt="attention" class="main__slide active" id="attention">
-            <img src="./img/slides/9.png" alt="clicks" class="main__slide" id="clicks">
-            <img src="./img/slides/10.png" alt="goals" class="main__slide" id="goals">
-            <img src="./img/slides/11.png" alt="value" class="main__slide" id="value">
+
+          <div class="main__slide-text" data-id="attention">
+            <h2 class="main__slide-title">Attention rate</h2>
+            <p class="main__slide-desc">Run brand-formance campaigns with attention-to-ad optimisation</p>
           </div>
+          <div class="main__slide-text" data-id="clicks">
+            <h2 class="main__slide-title">Clicks</h2>
+            <p class="main__slide-desc">Grow number of visitors on the same inventory</p>
+          </div>
+          <div class="main__slide-text" data-id="goals">
+            <h2 class="main__slide-title">Goals</h2>
+            <p class="main__slide-desc">Reach you goals more efficiently with CR optimisation</p>
+          </div>
+          <div class="main__slide-text" data-id="value">
+            <h2 class="main__slide-title">Value</h2>
+            <p class="main__slide-desc">Achieve the most valuable goals with CV optimisation</p>
+          </div>
+
+          <div class="main__images">
+            <img src="./img/slides/8.png" alt="attention" class="main__slide active" data-id="attention">
+            <img src="./img/slides/9.png" alt="clicks" class="main__slide" data-id="clicks">
+            <img src="./img/slides/10.png" alt="goals" class="main__slide" data-id="goals">
+            <img src="./img/slides/11.png" alt="value" class="main__slide" data-id="value">
+          </div>
+
           <div class="switch">
-            <div class="switch__item active" data-target="attention" data-index-slide="7">Attention rate</div>
-            <div class="switch__item" data-target="clicks" data-index-slide="8">Clicks</div>
-            <div class="switch__item" data-target="goals" data-index-slide="9">Goals</div>
-            <div class="switch__item" data-target="value" data-index-slide="10">Value</div>
+            <div class="switch__item" data-target="attention" data-index-slide="10">Attention rate</div>
+            <div class="switch__item" data-target="clicks" data-index-slide="11">Clicks</div>
+            <div class="switch__item" data-target="goals" data-index-slide="12">Goals</div>
+            <div class="switch__item" data-target="value" data-index-slide="13">Value</div>
             <div class="switch__select"></div>
           </div>
         </div>
@@ -174,7 +230,7 @@
 
   </div>
 
-  <div class="content" data-index-slide="11">
+  <div class="content" data-index-slide="14">
     <section class="solutions" id="solutions">
       <div class="container">
         <div class="solutions__content">
