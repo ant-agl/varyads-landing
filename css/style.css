@@ -64,6 +64,9 @@ html * {
   text-decoration: none;
 }
 
+html {
+  overflow: hidden;
+}
 body {
   overflow: hidden;
   height: 100vh;
