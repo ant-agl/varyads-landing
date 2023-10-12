@@ -116,6 +116,8 @@ function goToIndex(index) {
 
     if (isPhone) setTimeout(addEvent, 400);
     else setTimeout(addEvent, 1200);
+
+    setTimeout(calcHeightAndTopMainImages);
   } else {
     // scroll
     scroll = content.offsetTop + content.scrollTop;
@@ -166,6 +168,7 @@ mainBlocks.forEach((mainBlock) => {
       const target = sItem.getAttribute("data-target");
       const index = sItem.getAttribute("data-index-slide");
       curIndex = index;
+
       mainBlock
         .querySelectorAll(`.main__slide-text.active, .main__slide.active`)
         .forEach((item) => {
@@ -190,6 +193,8 @@ mainBlocks.forEach((mainBlock) => {
         video.currentTime = 0;
         video.play();
       }
+
+      calcHeightAndTopMainImages();
 
       switchSelect.classList.add("animate");
       setTimeout(() => {
@@ -329,6 +334,36 @@ function resizeHeight() {
     content.style.transform = `translateY(-${content.offsetTop}px)`;
     content.scrollTop = content.scrollTop;
   }
+
+  // watchOrientation();
+  calcHeightAndTopMainImages();
 }
 resizeHeight();
 window.addEventListener("resize", resizeHeight);
+
+// main images
+function calcHeightAndTopMainImages() {
+  const images = document.querySelector(".main.animate .main__images");
+  const firstImage = document.querySelector(".main.animate .main__slide");
+
+  const text =
+    document.querySelector(".main.animate .main__slide-text.active") ??
+    document.querySelector(".main.animate .main__text");
+
+  images.style.height = firstImage.offsetHeight + "px";
+  images.style.top =
+    text.clientHeight + text.offsetTop * 2 - nav.offsetHeight + "px";
+}
+document.addEventListener("DOMContentLoaded", calcHeightAndTopMainImages);
+
+// orientation
+// function watchOrientation() {
+// const orientation = document.querySelector(".orientation");
+// if (window.orientation !== 0 && window.innerHeight < 600) {
+//   orientation.classList.add("active");
+// } else {
+//   orientation.classList.remove("active");
+// }
+// }
+// window.addEventListener("orientationchange", watchOrientation);
+// watchOrientation();
