@@ -561,10 +561,10 @@ body {
 
 /* 1 */
 .main.top:nth-child(1) {
-  background-color: var(--bg-dark);
+  /* background-color: var(--bg-dark); */
 }
 .main.animate.top:nth-child(1) {
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 /* .main.top:nth-child(1) .btn {
   background-color: #00b26b;
@@ -575,10 +575,10 @@ body {
 
 /* 2 */
 .main.down:nth-child(2) {
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 .main.animate.down:nth-child(2) {
-  background-color: var(--bg-dark);
+  /* background-color: var(--bg-dark); */
 }
 /* .main.down:nth-child(2) .btn {
   background-color: var(--main-color);

@@ -140,18 +140,20 @@ function goToIndex(index) {
 const colorsCircle = [
   ["blue", "yellow"],
   ["blue", "yellow"],
-  ["green", "blue"],
-  ["yellow", "purpure"],
-  ["purpure", "green"],
-  ["purpure", "green"],
-  ["yellow", "blue"],
-  ["blue", "green"],
-  ["purpure", "yellow"],
-  ["blue", "purpure"],
-  ["blue", "purpure"],
-  ["yellow", "green"],
-  ["green", "purpure"],
   ["blue", "yellow"],
+  ["blue", "yellow"],
+
+  ["purpure", "green"],
+  ["purpure", "green"],
+  ["purpure", "green"],
+  ["purpure", "green"],
+  ["purpure", "green"],
+
+  ["blue", "purpure"],
+  ["blue", "purpure"],
+  ["blue", "purpure"],
+  ["blue", "purpure"],
+  ["blue", "purpure"],
 ];
 const colors = ["blue", "yellow", "green", "purpure"];
 
@@ -318,7 +320,7 @@ function hidePrivacy() {
 
 function changeBgNav() {
   const startBlack = document.querySelector(".main_black");
-  const endBlack = document.querySelectorAll(".main_black")[1];
+  const endBlack = document.querySelectorAll(".main_black")[2];
 
   const navH = nav.clientHeight;
   let start = startBlack.offsetTop - navH / 2;
@@ -360,9 +362,12 @@ window.addEventListener("resize", resizeHeight);
 // main images
 function calcHeightAndTopMainImages() {
   const images = document.querySelector(".main.animate .main__images");
-  const firstImage = document.querySelector(".main.animate .main__slide");
+  let firstImage = document.querySelector(".main.animate .main__slide");
+
+  if (!document.querySelector(".main.animate")) return;
 
   let interval = setInterval(() => {
+    // firstImage = document.querySelector(".main.animate .main__slide");
     if (firstImage.offsetHeight > 50) {
       const text =
         document.querySelector(".main.animate .main__slide-text.active") ??
