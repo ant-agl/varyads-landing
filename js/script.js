@@ -208,7 +208,6 @@ mainBlocks.forEach((mainBlock) => {
 });
 
 function calcSwitchSelect(switchSelect, switchActive) {
-  console.log(switchActive);
   if (!switchActive) {
     switchSelect.style.opacity = 0;
     return;

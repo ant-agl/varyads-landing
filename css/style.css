@@ -1313,7 +1313,7 @@ body {
 .orientation.active {
   display: flex;
 }
-@media (max-height: 550px) {
+@media (max-height: 530px) {
   .orientation {
     display: flex;
   }
