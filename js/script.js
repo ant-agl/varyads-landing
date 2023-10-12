@@ -352,7 +352,6 @@ function resizeHeight() {
     content.scrollTop = content.scrollTop;
   }
 
-  // watchOrientation();
   calcHeightAndTopMainImages();
   calcAllSwitchSelect();
 }
@@ -367,7 +366,6 @@ function calcHeightAndTopMainImages() {
   if (!document.querySelector(".main.animate")) return;
 
   let interval = setInterval(() => {
-    // firstImage = document.querySelector(".main.animate .main__slide");
     if (firstImage.offsetHeight > 50) {
       const text =
         document.querySelector(".main.animate .main__slide-text.active") ??
@@ -381,15 +379,3 @@ function calcHeightAndTopMainImages() {
   }, 10);
 }
 document.addEventListener("DOMContentLoaded", calcHeightAndTopMainImages);
-
-// orientation
-// function watchOrientation() {
-// const orientation = document.querySelector(".orientation");
-// if (window.orientation !== 0 && window.innerHeight < 600) {
-//   orientation.classList.add("active");
-// } else {
-//   orientation.classList.remove("active");
-// }
-// }
-// window.addEventListener("orientationchange", watchOrientation);
-// watchOrientation();
