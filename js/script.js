@@ -208,6 +208,7 @@ mainBlocks.forEach((mainBlock) => {
 });
 
 function calcSwitchSelect(switchSelect, switchActive) {
+  console.log(switchActive);
   if (!switchActive) {
     switchSelect.style.opacity = 0;
     return;
@@ -217,6 +218,13 @@ function calcSwitchSelect(switchSelect, switchActive) {
   switchSelect.style.height = switchActive.clientHeight + "px";
   switchSelect.style.top = switchActive.offsetTop + "px";
   switchSelect.style.left = switchActive.offsetLeft + "px";
+}
+
+function calcAllSwitchSelect() {
+  const s = document.querySelector(".main.animate .switch");
+  const sSelect = s.querySelector(".switch__select");
+  const sActive = s.querySelector(".switch__item.active");
+  calcSwitchSelect(sSelect, sActive);
 }
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -337,6 +345,7 @@ function resizeHeight() {
 
   // watchOrientation();
   calcHeightAndTopMainImages();
+  calcAllSwitchSelect();
 }
 resizeHeight();
 window.addEventListener("resize", resizeHeight);
@@ -346,13 +355,18 @@ function calcHeightAndTopMainImages() {
   const images = document.querySelector(".main.animate .main__images");
   const firstImage = document.querySelector(".main.animate .main__slide");
 
-  const text =
-    document.querySelector(".main.animate .main__slide-text.active") ??
-    document.querySelector(".main.animate .main__text");
+  let interval = setInterval(() => {
+    if (firstImage.offsetHeight > 50) {
+      const text =
+        document.querySelector(".main.animate .main__slide-text.active") ??
+        document.querySelector(".main.animate .main__text");
 
-  images.style.height = firstImage.offsetHeight + "px";
-  images.style.top =
-    text.clientHeight + text.offsetTop * 2 - nav.offsetHeight + "px";
+      images.style.height = firstImage.offsetHeight + "px";
+      images.style.top =
+        text.clientHeight + text.offsetTop * 2 - nav.offsetHeight + "px";
+      clearInterval(interval);
+    }
+  }, 10);
 }
 document.addEventListener("DOMContentLoaded", calcHeightAndTopMainImages);
 

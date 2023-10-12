@@ -380,9 +380,6 @@ body {
   position: relative;
   z-index: 2;
 }
-.main__images {
-  /* margin-top: 75px; */
-}
 .main__title {
   font-size: var(--h1-size);
   line-height: var(--h1-height);
