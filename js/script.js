@@ -114,6 +114,14 @@ function goToIndex(index) {
     fullPage.style.transform = `translateY(${-scroll}px)`;
     content.style.transform = `translateY(${-scroll}px)`;
 
+    curBlock.querySelectorAll(".circle").forEach((circle, i) => {
+      colors.forEach((color) => {
+        circle.classList.remove("circle_" + color);
+      });
+
+      circle.classList.add("circle_" + colorsCircle[curIndex][i]);
+    });
+
     if (isPhone) setTimeout(addEvent, 400);
     else setTimeout(addEvent, 1200);
 
