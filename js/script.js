@@ -372,8 +372,33 @@ function calcHeightAndTopMainImages() {
         document.querySelector(".main.animate .main__text");
 
       images.style.height = firstImage.offsetHeight + "px";
-      images.style.top =
-        text.clientHeight + text.offsetTop * 2 - nav.offsetHeight + "px";
+
+      const hNav = parseInt(nav.offsetHeight);
+      const hPage = parseInt(document.querySelector(".switch").offsetTop);
+      const hText = parseInt(text.clientHeight);
+      const hImg = parseInt(images.style.height);
+
+      document.querySelectorAll(".main").forEach((main) => {
+        main.style.paddingTop = hNav + "px";
+      });
+
+      const x = Math.ceil((hPage - hNav - hImg - hText) / 3);
+      const offsetImg = Math.ceil(x * 2 + hNav + hText);
+
+      if (x > 10) {
+        text.style.marginTop = x + "px";
+        images.style.top = offsetImg + "px";
+      } else {
+        images.style.top =
+          text.clientHeight + text.offsetTop * 2 - nav.offsetHeight + "px";
+      }
+
+      document
+        .querySelectorAll(".main:not(.animate) .main__images")
+        .forEach((images) => {
+          images.style.top = "";
+        });
+
       clearInterval(interval);
     }
   }, 10);
