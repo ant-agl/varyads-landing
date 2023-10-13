@@ -511,7 +511,8 @@ body {
 
 .main .circle,
 .main .main__images,
-.main .switch {
+.main .switch,
+.main .btn {
   transition: 0s;
 }
 .main.animate:not(.slide-active) .main__title {
