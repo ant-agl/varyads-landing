@@ -231,6 +231,7 @@ function calcSwitchSelect(switchSelect, switchActive) {
 
 function calcAllSwitchSelect() {
   const s = document.querySelector(".main.animate .switch");
+  if (!s) return;
   const sSelect = s.querySelector(".switch__select");
   const sActive = s.querySelector(".switch__item.active");
   calcSwitchSelect(sSelect, sActive);
