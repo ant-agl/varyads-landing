@@ -184,6 +184,7 @@ body {
   font-weight: var(--menu-weight);
   line-height: var(--menu-height);
 }
+.nav__link.active,
 .nav__link:hover {
   background-color: var(--bg-hover);
 }
@@ -292,6 +293,7 @@ body {
 
 .lang {
   position: relative;
+  display: none;
 }
 .lang__select {
   padding: 10px;

@@ -50,7 +50,7 @@ function changeSlide(e) {
 addEvent();
 
 function addEvent() {
-  const events = ["wheel", "touchmove"];
+  const events = ["wheel", "touchend"];
   events.forEach((event) => {
     document.addEventListener(event, changeSlide, {
       once: true,
@@ -66,6 +66,22 @@ function goToIndex(index) {
   curIndex = index;
   const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
   if (item) {
+    // active nav__link
+    let activeLink = document.querySelector(".nav .nav__link.active");
+    if (activeLink) activeLink.classList.remove("active");
+    const links = document.querySelectorAll(".nav .nav__link[data-to-slide]");
+    let slidesIndex = [];
+    links.forEach((item) => {
+      let n = Number(item.getAttribute("data-to-slide"));
+      slidesIndex.push(n);
+    });
+    for (let i = slidesIndex.length - 1; i >= 0; i--) {
+      if (slidesIndex[i] <= curIndex && curIndex < maxIndex) {
+        links[i].classList.add("active");
+        break;
+      }
+    }
+
     // tab change
     fullPage.classList.remove("transition");
 
