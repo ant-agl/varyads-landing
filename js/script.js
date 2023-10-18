@@ -254,6 +254,9 @@ function calcAllSwitchSelect() {
 }
 
 function goToHref(id) {
+  let activeLink = document.querySelector(".nav .nav__link.active");
+  if (activeLink) activeLink.classList.remove("active");
+
   const hNav = document.querySelector(".nav").clientHeight;
   let scrollContent = document.querySelector(id).offsetTop - hNav;
   scroll = maxIndexScroll + scrollContent;
