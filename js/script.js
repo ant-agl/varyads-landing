@@ -372,6 +372,8 @@ function calcHeightAndTopMainImages() {
         document.querySelector(".main.animate .main__slide-text.active") ??
         document.querySelector(".main.animate .main__text");
 
+      if (!text) return;
+
       images.style.height = firstImage.offsetHeight + "px";
 
       const hNav = parseInt(nav.offsetHeight);
