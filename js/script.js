@@ -55,7 +55,7 @@ function addEvent() {
   const events = ["wheel", "touchend"];
   events.forEach((event) => {
     document.addEventListener(event, changeSlide, {
-      // once: true,
+      once: true,
     });
   });
 }
@@ -140,15 +140,15 @@ function goToIndex(index) {
       circle.classList.add("circle_" + colorsCircle[curIndex][i]);
     });
 
-    // if (isPhone) setTimeout(addEvent, 400);
-    // else setTimeout(addEvent, 1200);
+    if (isPhone) setTimeout(addEvent, 400);
+    else setTimeout(addEvent, 800);
 
     setTimeout(calcHeightAndTopMainImages);
   } else {
     // scroll
     scroll = content.offsetTop + content.scrollTop;
 
-    // addEvent();
+    addEvent();
   }
 
   changeBgNav();
