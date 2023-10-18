@@ -1392,7 +1392,7 @@ body {
     display: none;
   }
 }
-@media (max-width: 1390px) {
+@media (max-width: 1170px) {
   .nav-pc {
     display: none;
   }
