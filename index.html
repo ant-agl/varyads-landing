@@ -22,42 +22,42 @@
       <div class="nav__content">
         <a href="#" data-to-slide="0" class="nav__logo">
           <img src="./img/logo.png" alt="VaryAds">
-          </å>
-          <a href="#" data-to-slide="0" class="nav__logo nav__logo_light">
-            <img src="./img/logo-light.png" alt="VaryAds">
-            </ф>
-            <div class="nav__btns">
-              <div class="nav__btns-links">
-                <a href="#" data-to-slide="0" class="nav__link nav-pc active">Ad Studio</a>
-                <a href="#" data-to-slide="4" class="nav__link nav-pc">Personalisation</a>
-                <a href="#" data-to-slide="9" class="nav__link nav-pc">Optimisation</a>
-                <a href="#solutions" class="nav__link nav-pc">Solutions</a>
-                <a href="#contacts" class="nav__link nav-pc">Contacts</a>
-              </div>
-              <div class="lang nav-pc">
-                <div class="lang__select">
-                  <img src="./img/flags/en.png" alt="en">
-                </div>
-                <div class="lang__list">
-                  <a href="./" class="lang__item active">
-                    <img src="./img/flags/en.png" alt="en" class="lang__flag">
-                    <span class="lang__text">English</span>
-                    <img src="./img/icons/checkmark.svg" class="lang__check">
-                  </a>
-                  <a href="./de" class="lang__item">
-                    <img src="./img/flags/de.png" alt="de" class="lang__flag">
-                    <span class="lang__text">Deutsch</span>
-                    <img src="./img/icons/checkmark.svg" class="lang__check">
-                  </a>
-                </div>
-              </div>
-              <a href="#" class="nav__link nav-pc">Sign in</a>
-              <a href="#" class="btn btn_primary">Get started</a>
-              <button class="nav__mobile-btn">
-                <img src="./img/icons/menu.svg" alt="menu">
-                <div class="cross"></div>
-              </button>
+        </a>
+        <a href="#" data-to-slide="0" class="nav__logo nav__logo_light">
+          <img src="./img/logo-light.png" alt="VaryAds">
+        </a>
+        <div class="nav__btns">
+          <div class="nav__btns-links">
+            <a href="#" data-to-slide="0" class="nav__link nav-pc active">Ad Studio</a>
+            <a href="#" data-to-slide="4" class="nav__link nav-pc">Personalisation</a>
+            <a href="#" data-to-slide="9" class="nav__link nav-pc">Optimisation</a>
+            <a href="#solutions" class="nav__link nav-pc">Solutions</a>
+            <a href="#contacts" class="nav__link nav-pc">Contacts</a>
+          </div>
+          <div class="lang nav-pc">
+            <div class="lang__select">
+              <img src="./img/flags/en.png" alt="en">
             </div>
+            <div class="lang__list">
+              <a href="./" class="lang__item active">
+                <img src="./img/flags/en.png" alt="en" class="lang__flag">
+                <span class="lang__text">English</span>
+                <img src="./img/icons/checkmark.svg" class="lang__check">
+              </a>
+              <a href="./de" class="lang__item">
+                <img src="./img/flags/de.png" alt="de" class="lang__flag">
+                <span class="lang__text">Deutsch</span>
+                <img src="./img/icons/checkmark.svg" class="lang__check">
+              </a>
+            </div>
+          </div>
+          <a href="#" class="nav__link nav-pc">Sign in</a>
+          <a href="#" class="btn btn_primary">Get started</a>
+          <button class="nav__mobile-btn">
+            <img src="./img/icons/menu.svg" alt="menu">
+            <div class="cross"></div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@
   <div id="fullpage">
 
     <div class="sections-block">
-      <section class="main main_black animate" data-index-slide="0">
+      <section class="main main_black animate" data-index-slide="0" id="studio">
         <div class="container">
           <div class="main__text">
             <div class="main__title">Scale up and cut the costs on ads production</div>
@@ -133,7 +133,7 @@
         <div class="circle circle_main circle_right circle_yellow"></div>
       </section>
 
-      <section class="main main_black" data-index-slide="4">
+      <section class="main main_black" data-index-slide="4" id="personalisation">
         <div class="container">
           <div class="main__text">
             <div class="main__title">Harness the power of personalization</div>
@@ -415,7 +415,7 @@
           </div>
           <div class="footer__col">
             <h6 class="footer__title">Company</h6>
-            <a href="#" class="footer__link">Imprint</a>
+            <a href="/imprint.html" class="footer__link">Imprint</a>
             <p class="footer__text">Böhrer Innovations UG<br>76275 Ettlingen</p>
           </div>
         </div>
@@ -447,6 +447,7 @@
     <p>Please, rotate the screen of your device</p>
   </div>
 
+  <script src="./js/nav.js"></script>
   <script src="./js/script.js"></script>
 </body>
 

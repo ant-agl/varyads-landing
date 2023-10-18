@@ -17,8 +17,6 @@ const videoSlides = ["video"];
 window.scrollTo(0, 0);
 
 function changeSlide(e) {
-  console.log(e);
-
   isPhone = false;
   if (e.deltaY === undefined) {
     e.deltaY = ts - e.changedTouches[0].clientY;
@@ -255,6 +253,27 @@ function calcAllSwitchSelect() {
   calcSwitchSelect(sSelect, sActive);
 }
 
+function goToHref(id) {
+  const hNav = document.querySelector(".nav").clientHeight;
+  let scrollContent = document.querySelector(id).offsetTop - hNav;
+  scroll = maxIndexScroll + scrollContent;
+
+  fullPage.classList.add("transition");
+  fullPage.style.transform = `translateY(-${maxIndexScroll}px)`;
+  content.style.transform = `translateY(-${maxIndexScroll}px)`;
+  content.scrollTo({
+    top: scrollContent,
+    behavior: "smooth",
+  });
+  curIndex = maxIndex + 1;
+
+  changeBgNav();
+
+  document.querySelectorAll(".main.animate").forEach((item) => {
+    item.classList.remove("animate");
+  });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
@@ -266,25 +285,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     }
 
     const id = link.getAttribute("href");
-
-    const hNav = document.querySelector(".nav").clientHeight;
-    let scrollContent = document.querySelector(id).offsetTop - hNav;
-    scroll = maxIndexScroll + scrollContent;
-
-    fullPage.classList.add("transition");
-    fullPage.style.transform = `translateY(-${maxIndexScroll}px)`;
-    content.style.transform = `translateY(-${maxIndexScroll}px)`;
-    content.scrollTo({
-      top: scrollContent,
-      behavior: "smooth",
-    });
-    curIndex = maxIndex + 1;
-
-    changeBgNav();
-
-    document.querySelectorAll(".main.animate").forEach((item) => {
-      item.classList.remove("animate");
-    });
+    goToHref(id);
   });
 });
 
@@ -297,28 +298,6 @@ const observer = new IntersectionObserver((entries) => {
 });
 document.querySelectorAll(".wow").forEach((wow) => {
   observer.observe(wow);
-});
-
-// mobile menu
-const nav = document.querySelector(".nav");
-const navBtn = document.querySelector(".nav__mobile-btn");
-const navMobile = document.querySelector(".nav_mobile");
-const navLinks = document.querySelectorAll(".nav__link");
-navBtn.addEventListener("click", function () {
-  if (!navMobile.classList.contains("active")) {
-    navBtn.classList.add("active");
-    navMobile.classList.add("active");
-    document.querySelector("body").style.overflow = "hidden";
-  } else {
-    navBtn.classList.remove("active");
-    navMobile.classList.remove("active");
-  }
-});
-navLinks.forEach((link) => {
-  link.addEventListener("click", function () {
-    navBtn.classList.remove("active");
-    navMobile.classList.remove("active");
-  });
 });
 
 // privacy
@@ -423,3 +402,45 @@ function calcHeightAndTopMainImages() {
   }, 10);
 }
 document.addEventListener("DOMContentLoaded", calcHeightAndTopMainImages);
+
+// to slide from get
+function getParams() {
+  let params = {};
+  location.search
+    .slice(1)
+    .split("&")
+    .forEach((item) => {
+      let t = item.split("=");
+      if (t[0]) params[t[0]] = t[1];
+    });
+  return params;
+}
+function updateParam(param, val) {
+  let params = getParams();
+  params[param] = val;
+  replaceParamsHistory(params);
+}
+function deleteParam(param) {
+  let params = getParams();
+  delete params[param];
+  replaceParamsHistory(params);
+}
+function replaceParamsHistory(params) {
+  let arr = [];
+  for (let key in params) {
+    if (key) arr.push(key + "=" + params[key]);
+  }
+  let s = "?";
+  s += arr.join("&");
+
+  history.replaceState({}, "", s);
+}
+let params = getParams();
+if (params["to-slide"]) {
+  goToIndex(params["to-slide"]);
+  deleteParam("to-slide");
+}
+if (params["to-href"]) {
+  goToHref("#" + params["to-href"]);
+  deleteParam("to-href");
+}

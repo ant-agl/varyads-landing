@@ -1,0 +1,52 @@
+html,
+body {
+  overflow: auto !important;
+}
+body {
+  padding-top: 72px;
+}
+.impressum {
+  padding: 80px 0 120px;
+}
+.impressum__title {
+  font-size: 80px;
+  line-height: 80px;
+  font-weight: 700;
+  letter-spacing: -3px;
+}
+.impressum__subtitle {
+  font-size: var(--h3-size);
+  line-height: var(--h3-height);
+  font-weight: var(--h3-weight);
+  letter-spacing: -2px;
+}
+.impressum__text {
+  font-size: var(--desc-big-size);
+  line-height: var(--desc-big-height);
+  font-weight: var(--desc-big-weight);
+  max-width: 896px;
+}
+.impressum__contact {
+  margin-top: 104px;
+  display: flex;
+  gap: 80px;
+}
+.impressum__col,
+.impressum__block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.impressum__block {
+  margin-top: 80px;
+}
+
+@media (max-width: 830px) {
+  .impressum__title {
+    font-size: 60px;
+    line-height: 60px;
+  }
+  .impressum__contact {
+    flex-direction: column;
+  }
+}
