@@ -17,6 +17,8 @@ const videoSlides = ["video"];
 window.scrollTo(0, 0);
 
 function changeSlide(e) {
+  console.log(e);
+
   isPhone = false;
   if (e.deltaY === undefined) {
     e.deltaY = ts - e.changedTouches[0].clientY;
@@ -53,7 +55,7 @@ function addEvent() {
   const events = ["wheel", "touchend"];
   events.forEach((event) => {
     document.addEventListener(event, changeSlide, {
-      once: true,
+      // once: true,
     });
   });
 }
@@ -138,15 +140,15 @@ function goToIndex(index) {
       circle.classList.add("circle_" + colorsCircle[curIndex][i]);
     });
 
-    if (isPhone) setTimeout(addEvent, 400);
-    else setTimeout(addEvent, 1200);
+    // if (isPhone) setTimeout(addEvent, 400);
+    // else setTimeout(addEvent, 1200);
 
     setTimeout(calcHeightAndTopMainImages);
   } else {
     // scroll
     scroll = content.offsetTop + content.scrollTop;
 
-    addEvent();
+    // addEvent();
   }
 
   changeBgNav();
