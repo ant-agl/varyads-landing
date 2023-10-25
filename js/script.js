@@ -126,9 +126,9 @@ document.addEventListener("scroll", function () {
   let indexRemove = 0;
   if (scrollY <= 5) {
     indexRemove = 0;
-  } else if (scrollY < personalisation.offsetTop) {
+  } else if (scrollY < personalisation.offsetTop + 50) {
     indexRemove = 1;
-  } else if (scrollY < optimisation.offsetTop) {
+  } else if (scrollY < optimisation.offsetTop + 50) {
     indexRemove = 2;
   } else {
     indexRemove = 3;
@@ -222,13 +222,23 @@ function hidePrivacy() {
 
 // main images
 function calcHeightAndTopMainImages() {
-  const images = document.querySelectorAll(".main__images");
-  images.forEach((image) => {
-    image.style.height = image.clientWidth * 0.66 + "px";
-  });
-
+  // const images = document.querySelectorAll(".main__images");
+  // images.forEach((image) => {
+  //   image.style.height = image.clientWidth * 0.66 + "px";
+  // });
   const mainBlocks = document.querySelectorAll(".main");
   mainBlocks.forEach((block) => {
+    const image = block.querySelector(".main__images");
+    const slideText = block.querySelector(".main__slide-text");
+    slideText.classList.add("active");
+    const title = block.querySelector(".main__slide-title").clientHeight;
+    const desc = block.querySelector(".main__slide-desc").clientHeight;
+    console.log(window.innerHeight, title, desc, nav.clientHeight);
+    const h = window.innerHeight - title - desc - nav.clientHeight - 75 - 40;
+    console.log(h);
+    image.style.height = h + "px";
+    slideText.classList.remove("active");
+
     const text = block.querySelector(".main__text");
     const slides = block.querySelectorAll(".main__slide-text");
     slides.forEach((slide) => {
