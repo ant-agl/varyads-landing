@@ -138,6 +138,7 @@ document.addEventListener("scroll", function () {
     if (i >= indexRemove) {
       images[i].classList.remove("active");
       mainBlocks[i].classList.remove("slide-active");
+
       mainBlocks[i]
         .querySelectorAll(".main__slide-text")
         .forEach((slide) => slide.classList.remove("active"));

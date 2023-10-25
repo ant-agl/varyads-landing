@@ -385,7 +385,7 @@ body {
   text-align: center;
   opacity: 0;
 }
-.main .btn {
+.main .btn-wrapper {
   opacity: 0;
 }
 .main__slide-text {
@@ -398,7 +398,9 @@ body {
   opacity: 0;
 }
 .main__slide-text.active {
+  opacity: 1;
   display: flex;
+  position: static;
 }
 .main__slide-title {
   font-size: 32px;
@@ -499,13 +501,13 @@ body {
   -webkit-animation: fadeIn 0.5s ease 0.4s both;
   animation: fadeIn 0.5s ease 0.4s both;
 }
-.main.animate:not(.slide-active) .btn {
+.main.animate:not(.slide-active) .btn-wrapper {
   -webkit-animation: fadeIn 0.8s ease 0.2s both;
   animation: fadeIn 0.8s ease 0.2s both;
 }
 .main.animate.slide-active .main__title,
 .main.animate.slide-active .main__desc,
-.main.animate.slide-active .btn {
+.main.animate.slide-active .btn-wrapper {
   opacity: 1;
   transform: scale(1);
 }
