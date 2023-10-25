@@ -122,13 +122,26 @@ document.addEventListener("scroll", function () {
   else if (scrollY < contacts.offsetTop) changeActiveMenu(3);
   else changeActiveMenu(4);
 
+  console.log(scrollY, personalisation.querySelector(".switch").offsetTop);
   // active slide
   let indexRemove = 0;
   if (scrollY <= 5) {
     indexRemove = 0;
-  } else if (scrollY < personalisation.offsetTop + 50) {
+  } else if (
+    scrollY < personalisation.offsetTop + 50 &&
+    scrollY <
+      personalisation.querySelector(".switch").getBoundingClientRect().top +
+        window.pageYOffset -
+        window.innerHeight
+  ) {
     indexRemove = 1;
-  } else if (scrollY < optimisation.offsetTop + 50) {
+  } else if (
+    scrollY < optimisation.offsetTop + 50 &&
+    scrollY <
+      optimisation.querySelector(".switch").getBoundingClientRect().top +
+        window.pageYOffset -
+        window.innerHeight
+  ) {
     indexRemove = 2;
   } else {
     indexRemove = 3;
@@ -233,10 +246,8 @@ function calcHeightAndTopMainImages() {
     slideText.classList.add("active");
     const title = block.querySelector(".main__slide-title").clientHeight;
     const desc = block.querySelector(".main__slide-desc").clientHeight;
-    console.log(window.innerHeight, title, desc, nav.clientHeight);
     const h = window.innerHeight - title - desc - nav.clientHeight - 75 - 40;
-    console.log(h);
-    image.style.height = h + "px";
+    image.style.height = Math.min(h, image.clientWidth * 0.66) + "px";
     slideText.classList.remove("active");
 
     const text = block.querySelector(".main__text");
