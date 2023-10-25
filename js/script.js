@@ -1,174 +1,10 @@
 // scroll
-const fullPage = document.querySelector("#fullpage");
-const content = document.querySelector(".content");
-let curIndex = 0;
-const minIndex = 0;
-const maxIndex = 14;
-const lastMainBlock = document.querySelectorAll(".main")[2];
-let maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
-
-let isPhone = false;
-let scrollDirection = "down";
-let scroll = 0;
-let ts = 0;
-let timeTS = 0;
-let timeScroll = 0;
 const videoSlides = ["video"];
-window.scrollTo(0, 0);
-
-function changeSlide(e) {
-  isPhone = false;
-  if (e.deltaY === undefined) {
-    e.deltaY = ts - e.changedTouches[0].clientY;
-    timeScroll = (new Date().getTime() - timeTS) / 60;
-    ts = e.changedTouches[0].clientY;
-    timeTS = new Date().getTime();
-
-    isPhone = true;
-  }
-  if (e.deltaY > 0) {
-    // down
-    scrollDirection = "down";
-    curIndex++;
-    if (maxIndexScroll <= scroll || curIndex > maxIndex) {
-      curIndex = maxIndex + 1;
-    }
-  } else {
-    // top
-    scrollDirection = "top";
-    curIndex = Math.max(minIndex, curIndex - 1);
-    if (maxIndexScroll < scroll) {
-      curIndex = maxIndex + 1;
-    } else if (maxIndexScroll >= scroll && curIndex >= maxIndex) {
-      curIndex = maxIndex - 1;
-    }
-  }
-
-  window.scrollTo(0, 0);
-  goToIndex(curIndex);
-}
-addEvent();
-
-function addEvent() {
-  const events = ["wheel", "touchend"];
-  events.forEach((event) => {
-    document.addEventListener(event, changeSlide, {
-      once: true,
-    });
-  });
-}
-document.addEventListener("touchstart", function (e) {
-  ts = e.changedTouches[0].clientY;
-  timeTS = new Date().getTime();
-});
-
-function goToIndex(index) {
-  curIndex = index;
-  const item = document.querySelector(`[data-index-slide="${curIndex}"]`);
-  if (item) {
-    // active nav__link
-    let activeLink = document.querySelector(".nav .nav__link.active");
-    if (activeLink) activeLink.classList.remove("active");
-    const links = document.querySelectorAll(".nav .nav__link[data-to-slide]");
-    let slidesIndex = [];
-    links.forEach((item) => {
-      let n = Number(item.getAttribute("data-to-slide"));
-      slidesIndex.push(n);
-    });
-    for (let i = slidesIndex.length - 1; i >= 0; i--) {
-      if (slidesIndex[i] <= curIndex && curIndex < maxIndex) {
-        links[i].classList.add("active");
-        break;
-      }
-    }
-
-    // tab change
-    fullPage.classList.remove("transition");
-
-    let isSlide = false;
-    if (item.classList.contains("main")) {
-      item.classList.remove("slide-active");
-      let slideActive = item.querySelector(".main__slide-text.active");
-      if (slideActive) slideActive.classList.remove("active");
-
-      let switchActive = item.querySelector(".switch__item.active");
-      if (switchActive) {
-        switchActive.classList.remove("active");
-        calcSwitchSelect(item.querySelector(".switch__select"), false);
-      }
-    } else {
-      isSlide = true;
-      item.click();
-      const target = item.getAttribute("data-target");
-      if (videoSlides.indexOf(target) !== -1) {
-        let video = document.querySelector(`video[data-id="${target}"]`);
-        if (!video) return;
-        video.currentTime = 0;
-        video.play();
-      }
-    }
-
-    const curBlock = item.closest(".main") || item;
-    if (curBlock.classList.contains("main") && isSlide) {
-      curBlock.classList.add("slide-active");
-    }
-    scroll = curBlock.offsetTop;
-
-    const oldBlock = document.querySelector(".main.animate") || content;
-    if (!curBlock.classList.contains("animate")) {
-      oldBlock.classList.remove("animate");
-      oldBlock.classList.remove("down");
-      oldBlock.classList.remove("top");
-      curBlock.classList.add(scrollDirection);
-      setTimeout(() => {
-        curBlock.classList.add("animate");
-      });
-    }
-
-    if (curIndex >= maxIndex - 1) fullPage.classList.add("transition");
-
-    fullPage.style.transform = `translateY(${-scroll}px)`;
-    content.style.transform = `translateY(${-scroll}px)`;
-
-    curBlock.querySelectorAll(".circle").forEach((circle, i) => {
-      colors.forEach((color) => {
-        circle.classList.remove("circle_" + color);
-      });
-
-      circle.classList.add("circle_" + colorsCircle[curIndex][i]);
-    });
-
-    if (isPhone) setTimeout(addEvent, 400);
-    else setTimeout(addEvent, 800);
-
-    setTimeout(calcHeightAndTopMainImages);
-  } else {
-    // scroll
-    scroll = content.offsetTop + content.scrollTop;
-
-    addEvent();
-  }
-
-  changeBgNav();
-}
 
 // switch
 const colorsCircle = [
   ["blue", "yellow"],
-  ["blue", "yellow"],
-  ["blue", "yellow"],
-  ["blue", "yellow"],
-
   ["purpure", "green"],
-  ["purpure", "green"],
-  ["purpure", "green"],
-  ["purpure", "green"],
-  ["purpure", "green"],
-
-  ["blue", "purpure"],
-  ["blue", "purpure"],
-  ["blue", "purpure"],
-  ["blue", "purpure"],
   ["blue", "purpure"],
 ];
 const colors = ["blue", "yellow", "green", "purpure"];
@@ -192,8 +28,6 @@ mainBlocks.forEach((mainBlock) => {
 
       // change img
       const target = sItem.getAttribute("data-target");
-      const index = sItem.getAttribute("data-index-slide");
-      curIndex = index;
 
       mainBlock
         .querySelectorAll(`.main__slide-text.active, .main__slide.active`)
@@ -204,15 +38,6 @@ mainBlocks.forEach((mainBlock) => {
         item.classList.add("active");
       });
 
-      mainBlock.querySelectorAll(".circle").forEach((circle, i) => {
-        colors.forEach((color) => {
-          circle.classList.remove("circle_" + color);
-        });
-
-        circle.classList.add("circle_" + colorsCircle[curIndex][i]);
-      });
-      mainBlock.classList.add("slide-active");
-
       if (videoSlides.indexOf(target) !== -1) {
         let video = mainBlock.querySelector(`video[data-id="${target}"]`);
         if (!video) return;
@@ -220,7 +45,7 @@ mainBlocks.forEach((mainBlock) => {
         video.play();
       }
 
-      calcHeightAndTopMainImages();
+      // calcHeightAndTopMainImages();
 
       switchSelect.classList.add("animate");
       setTimeout(() => {
@@ -253,42 +78,117 @@ function calcAllSwitchSelect() {
   calcSwitchSelect(sSelect, sActive);
 }
 
-function goToHref(id) {
-  let activeLink = document.querySelector(".nav .nav__link.active");
-  if (activeLink) activeLink.classList.remove("active");
+document.addEventListener("scroll", function () {
+  const scrollY = window.scrollY;
+  // hide switch
+  if (scrollY <= 5) {
+    switches[0].classList.add("hidden");
+  } else {
+    switches[0].classList.remove("hidden");
+  }
 
-  const hNav = document.querySelector(".nav").clientHeight;
-  let scrollContent = document.querySelector(id).offsetTop - hNav;
-  scroll = maxIndexScroll + scrollContent;
+  const adStudio = document.querySelector("#studio");
+  const personalisation = document.querySelector("#personalisation");
+  const optimisation = document.querySelector("#optimisation");
+  const solutions = document.querySelector("#solutions");
+  const contacts = document.querySelector("#contacts");
+  const images = document.querySelectorAll(".main__images");
+  const mainBlocks = document.querySelectorAll(".main");
+  // position circles
+  if (
+    scrollY >=
+    optimisation.offsetTop + optimisation.clientHeight - window.innerHeight
+  ) {
+    optimisation.querySelectorAll(".circle").forEach((circle) => {
+      circle.style.position = "absolute";
+    });
+  } else {
+    optimisation.querySelectorAll(".circle").forEach((circle) => {
+      circle.style.position = "fixed";
+    });
+  }
 
-  fullPage.classList.add("transition");
-  fullPage.style.transform = `translateY(-${maxIndexScroll}px)`;
-  content.style.transform = `translateY(-${maxIndexScroll}px)`;
-  content.scrollTo({
-    top: scrollContent,
-    behavior: "smooth",
+  // color circles
+  if (scrollY < personalisation.offsetTop - window.innerHeight / 2)
+    changeColorCircles(0);
+  else if (scrollY < optimisation.offsetTop - window.innerHeight / 2)
+    changeColorCircles(1);
+  else changeColorCircles(2);
+
+  // active link
+  if (scrollY < personalisation.offsetTop) changeActiveMenu(0);
+  else if (scrollY < optimisation.offsetTop) changeActiveMenu(1);
+  else if (scrollY < solutions.offsetTop) changeActiveMenu(2);
+  else if (scrollY < contacts.offsetTop) changeActiveMenu(3);
+  else changeActiveMenu(4);
+
+  // active slide
+  let indexRemove = 0;
+  if (scrollY <= 5) {
+    indexRemove = 0;
+  } else if (scrollY < personalisation.offsetTop) {
+    indexRemove = 1;
+  } else if (scrollY < optimisation.offsetTop) {
+    indexRemove = 2;
+  } else {
+    indexRemove = 3;
+  }
+
+  for (let i = 0; i < 3; i++) {
+    if (i >= indexRemove) {
+      images[i].classList.remove("active");
+      mainBlocks[i].classList.remove("slide-active");
+      mainBlocks[i]
+        .querySelectorAll(".main__slide-text")
+        .forEach((slide) => slide.classList.remove("active"));
+    } else {
+      images[i].classList.add("active");
+      mainBlocks[i].classList.add("slide-active");
+
+      const activeSwitch = mainBlocks[i].querySelector(".switch__item.active");
+      const target = activeSwitch.getAttribute("data-target");
+
+      mainBlocks[i]
+        .querySelector(`.main__slide-text[data-id="${target}"]`)
+        .classList.add("active");
+    }
+  }
+
+  // color navbar
+  const nav = document.querySelector(".nav");
+  if (scrollY < solutions.offsetTop) nav.classList.add("nav_dark");
+  else nav.classList.remove("nav_dark");
+});
+
+function changeColorCircles(index) {
+  document.querySelectorAll(".circle").forEach((circle) => {
+    colors.forEach((color) => {
+      circle.classList.remove("circle_" + color);
+    });
   });
-  curIndex = maxIndex + 1;
-
-  changeBgNav();
-
-  document.querySelectorAll(".main.animate").forEach((item) => {
-    item.classList.remove("animate");
-  });
+  document
+    .querySelectorAll(".circle")[0]
+    .classList.add("circle_" + colorsCircle[index][0]);
+  document
+    .querySelectorAll(".circle")[1]
+    .classList.add("circle_" + colorsCircle[index][1]);
+}
+function changeActiveMenu(index) {
+  const links = document.querySelectorAll(".nav .nav__link");
+  links.forEach((link) => link.classList.remove("active"));
+  links[index].classList.add("active");
 }
 
+// link
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
 
-    if (link.hasAttribute("data-to-slide")) {
-      const toSlide = link.getAttribute("data-to-slide");
-      goToIndex(toSlide);
-      return;
-    }
-
     const id = link.getAttribute("href");
-    goToHref(id);
+    window.scrollTo({
+      top: document.querySelector(id).offsetTop,
+      behavior: "smooth",
+    });
   });
 });
 
@@ -319,133 +219,21 @@ function hidePrivacy() {
   privacy.classList.add("hide");
 }
 
-function changeBgNav() {
-  const startBlack = document.querySelector(".main_black");
-  const endBlack = document.querySelectorAll(".main_black")[2];
-
-  const navH = nav.clientHeight;
-  let start = startBlack.offsetTop - navH / 2;
-  let end = endBlack.offsetTop + endBlack.clientHeight - navH / 2;
-
-  if (scroll >= start && scroll <= end) nav.classList.add("nav_dark");
-  else nav.classList.remove("nav_dark");
-}
-
-// adaptive height
-function resizeHeight() {
-  document.body.style.height = document.documentElement.clientHeight + "px";
-  document.querySelectorAll(".main").forEach((block) => {
-    block.style.height = document.documentElement.clientHeight + "px";
-  });
-  maxIndexScroll = lastMainBlock.offsetTop + lastMainBlock.clientHeight;
-
-  if (curIndex < maxIndex) {
-    // tabs
-    const curBlock = document.querySelector(".main.animate");
-    scroll = curBlock.offsetTop;
-    fullPage.style.transform = `translateY(-${scroll}px)`;
-    content.style.transform = `translateY(-${scroll}px)`;
-  } else {
-    // content
-    scroll = content.offsetTop + content.scrollTop;
-    fullPage.style.transform = `translateY(-${content.offsetTop}px)`;
-    content.style.transform = `translateY(-${content.offsetTop}px)`;
-    content.scrollTop = content.scrollTop;
-  }
-
-  calcHeightAndTopMainImages();
-  calcAllSwitchSelect();
-}
-resizeHeight();
-window.addEventListener("resize", resizeHeight);
-
 // main images
 function calcHeightAndTopMainImages() {
-  const images = document.querySelector(".main.animate .main__images");
-  let firstImage = document.querySelector(".main.animate .main__slide");
+  const images = document.querySelectorAll(".main__images");
+  images.forEach((image) => {
+    image.style.height = image.clientWidth * 0.66 + "px";
+  });
 
-  if (!document.querySelector(".main.animate")) return;
-
-  let interval = setInterval(() => {
-    if (firstImage.offsetHeight > 50) {
-      const text =
-        document.querySelector(".main.animate .main__slide-text.active") ??
-        document.querySelector(".main.animate .main__text");
-
-      if (!text) return;
-
-      images.style.height = firstImage.offsetHeight + "px";
-
-      const hNav = parseInt(nav.offsetHeight);
-      const hPage = parseInt(document.querySelector(".switch").offsetTop);
-      const hText = parseInt(text.clientHeight);
-      const hImg = parseInt(images.style.height);
-
-      document.querySelectorAll(".main").forEach((main) => {
-        main.style.paddingTop = hNav + "px";
-      });
-
-      const x = Math.ceil((hPage - hNav - hImg - hText) / 3);
-      const offsetImg = Math.ceil(x * 2 + hNav + hText);
-
-      if (x > 10) {
-        text.style.marginTop = x + "px";
-        images.style.top = offsetImg + "px";
-      } else {
-        images.style.top =
-          text.clientHeight + text.offsetTop * 2 - nav.offsetHeight + "px";
-      }
-
-      document
-        .querySelectorAll(".main:not(.animate) .main__images")
-        .forEach((images) => {
-          images.style.top = "";
-        });
-
-      clearInterval(interval);
-    }
-  }, 10);
+  const mainBlocks = document.querySelectorAll(".main");
+  mainBlocks.forEach((block) => {
+    const text = block.querySelector(".main__text");
+    const slides = block.querySelectorAll(".main__slide-text");
+    slides.forEach((slide) => {
+      slide.style.height = text.clientHeight + "px";
+    });
+  });
 }
 document.addEventListener("DOMContentLoaded", calcHeightAndTopMainImages);
-
-// to slide from get
-function getParams() {
-  let params = {};
-  location.search
-    .slice(1)
-    .split("&")
-    .forEach((item) => {
-      let t = item.split("=");
-      if (t[0]) params[t[0]] = t[1];
-    });
-  return params;
-}
-function updateParam(param, val) {
-  let params = getParams();
-  params[param] = val;
-  replaceParamsHistory(params);
-}
-function deleteParam(param) {
-  let params = getParams();
-  delete params[param];
-  replaceParamsHistory(params);
-}
-function replaceParamsHistory(params) {
-  let arr = [];
-  for (let key in params) {
-    if (key) arr.push(key + "=" + params[key]);
-  }
-  let s = "?";
-  s += arr.join("&");
-
-  history.replaceState({}, "", s);
-}
-let params = getParams();
-if (params["to-slide"]) {
-  goToIndex(params["to-slide"]);
-  deleteParam("to-slide");
-}
-if (params["to-href"]) {
-  goToHref("#" + params["to-href"]);
-  deleteParam("to-href");
-}
+window.addEventListener("resize", calcHeightAndTopMainImages);
