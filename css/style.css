@@ -560,6 +560,11 @@ body {
   background: url(../img/circles/blue.png) no-repeat center;
   background-size: contain;
 }
+.circle_hide {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
 /*
 .content {
   overflow-x: hidden;
@@ -1520,5 +1525,10 @@ body {
   .main__slide-text,
   .main__images {
     margin-top: 5px;
+  }
+}
+@media (hover: none) {
+  .nav__link:hover {
+    background-color: inherit;
   }
 }
