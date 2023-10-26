@@ -176,17 +176,27 @@ document.addEventListener("scroll", function () {
 });
 
 function changeColorCircles(index) {
-  document.querySelectorAll(".circle").forEach((circle) => {
-    colors.forEach((color) => {
-      circle.classList.remove("circle_" + color);
-    });
+  // document.querySelectorAll(".circle").forEach((circle) => {
+  //   colors.forEach((color) => {
+  //     circle.classList.remove("circle_" + color);
+  //   });
+  // });
+  // document
+  //   .querySelectorAll(".circle")[0]
+  //   .classList.add("circle_" + colorsCircle[index][0]);
+  // document
+  //   .querySelectorAll(".circle")[1]
+  //   .classList.add("circle_" + colorsCircle[index][1]);
+
+  document.querySelectorAll(".circle.animate").forEach((circle) => {
+    circle.classList.remove("animate");
   });
   document
-    .querySelectorAll(".circle")[0]
-    .classList.add("circle_" + colorsCircle[index][0]);
+    .querySelectorAll(".circle.circle_left")
+    [index].classList.add("animate");
   document
-    .querySelectorAll(".circle")[1]
-    .classList.add("circle_" + colorsCircle[index][1]);
+    .querySelectorAll(".circle.circle_right")
+    [index].classList.add("animate");
 }
 function changeActiveMenu(index) {
   const links = document.querySelectorAll(".nav .nav__link");
