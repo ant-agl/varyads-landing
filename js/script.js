@@ -71,12 +71,14 @@ function calcSwitchSelect(switchSelect, switchActive) {
 }
 
 function calcAllSwitchSelect() {
-  const s = document.querySelector(".main.animate .switch");
-  if (!s) return;
-  const sSelect = s.querySelector(".switch__select");
-  const sActive = s.querySelector(".switch__item.active");
-  calcSwitchSelect(sSelect, sActive);
+  document.querySelectorAll(".switch").forEach((s) => {
+    const sSelect = s.querySelector(".switch__select");
+    const sActive = s.querySelector(".switch__item.active");
+    calcSwitchSelect(sSelect, sActive);
+  });
 }
+window.addEventListener("resize", calcAllSwitchSelect);
+setTimeout(calcAllSwitchSelect, 500);
 
 document.addEventListener("scroll", function () {
   const scrollY = window.scrollY;
@@ -122,7 +124,6 @@ document.addEventListener("scroll", function () {
   else if (scrollY < contacts.offsetTop) changeActiveMenu(3);
   else changeActiveMenu(4);
 
-  console.log(scrollY, personalisation.querySelector(".switch").offsetTop);
   // active slide
   let indexRemove = 0;
   if (scrollY <= 5) {
@@ -235,19 +236,19 @@ function hidePrivacy() {
 
 // main images
 function calcHeightAndTopMainImages() {
-  // const images = document.querySelectorAll(".main__images");
-  // images.forEach((image) => {
-  //   image.style.height = image.clientWidth * 0.66 + "px";
-  // });
   const mainBlocks = document.querySelectorAll(".main");
   mainBlocks.forEach((block) => {
     const image = block.querySelector(".main__images");
     const slideText = block.querySelector(".main__slide-text");
-    // slideText.classList.add("active");
     const title = block.querySelector(".main__slide-title").clientHeight;
     const desc = block.querySelector(".main__slide-desc").clientHeight;
+    const switchH = block.querySelector(".switch").clientHeight;
     const h = window.innerHeight - title - desc - nav.clientHeight - 75 - 40;
-    image.style.height = Math.min(h, image.clientWidth * 0.66) + "px";
+
+    const hMobile = image.clientWidth * 0.66 + switchH + 50;
+    // image.style.height = Math.min(h, image.clientWidth * 0.66) + "px";
+    image.style.height = Math.min(h, hMobile) + "px";
+    // image.style.height = h + "px";
     if (!block.classList.contains("slide-active"))
       slideText.classList.remove("active");
 

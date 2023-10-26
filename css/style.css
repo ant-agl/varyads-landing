@@ -477,10 +477,6 @@ body {
 .main.slide-active .main__images {
   bottom: 0;
 }
-.main.slide-active .main__slide {
-  top: auto;
-  bottom: 0;
-}
 .main__slide.active {
   opacity: 1;
 }
@@ -1362,6 +1358,12 @@ body {
   .circle {
     bottom: -35%;
   }
+  .switch {
+    bottom: 24px;
+  }
+  .main_pb .switch {
+    bottom: 99px;
+  }
 }
 @media (max-width: 575px) {
   :root {
@@ -1380,10 +1382,6 @@ body {
     --menu-height: 16px;
 
     --slide-h: 50%;
-  }
-  .main__slide {
-    top: auto;
-    bottom: 0;
   }
   .circle_left {
     right: -20%;
