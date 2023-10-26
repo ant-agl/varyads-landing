@@ -540,11 +540,6 @@ body {
   left: 40%;
   /* transform: translateX(80px); */
 }
-.circle_blue {
-  /* background-color: var(--main-color); */
-  background: url(../img/circles/blue.png) no-repeat center;
-  background-size: contain;
-}
 .circle_yellow {
   /* background-color: var(--yellow-color); */
   background: url(../img/circles/yellow.png) no-repeat center;
@@ -558,6 +553,11 @@ body {
 .circle_green {
   /* background-color: var(--green-color); */
   background: url(../img/circles/green.png) no-repeat center;
+  background-size: contain;
+}
+.circle_blue {
+  /* background-color: var(--main-color); */
+  background: url(../img/circles/blue.png) no-repeat center;
   background-size: contain;
 }
 /*
