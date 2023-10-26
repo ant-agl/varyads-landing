@@ -243,7 +243,7 @@ function calcHeightAndTopMainImages() {
   mainBlocks.forEach((block) => {
     const image = block.querySelector(".main__images");
     const slideText = block.querySelector(".main__slide-text");
-    slideText.classList.add("active");
+    // slideText.classList.add("active");
     const title = block.querySelector(".main__slide-title").clientHeight;
     const desc = block.querySelector(".main__slide-desc").clientHeight;
     const h = window.innerHeight - title - desc - nav.clientHeight - 75 - 40;
