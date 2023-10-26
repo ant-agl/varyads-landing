@@ -1524,9 +1524,10 @@ body {
 }
 @media (hover: none) {
   .nav__link:hover,
-  .nav__mobile-btn:hover,
-  .lang__select:hover,
-  .lang:hover {
+  .lang__select:hover {
     background-color: inherit;
+  }
+  .nav__mobile-btn:hover {
+    background-color: var(--bg-hover);
   }
 }
