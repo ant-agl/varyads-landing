@@ -45,8 +45,6 @@ mainBlocks.forEach((mainBlock) => {
         video.play();
       }
 
-      // calcHeightAndTopMainImages();
-
       switchSelect.classList.add("animate");
       setTimeout(() => {
         switchSelect.classList.remove("animate");
@@ -210,8 +208,9 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     e.preventDefault();
 
     const id = link.getAttribute("href");
+    const item = document.querySelector(id);
     window.scrollTo({
-      top: document.querySelector(id).offsetTop,
+      top: item.offsetTop,
       behavior: "smooth",
     });
   });
@@ -250,24 +249,26 @@ function calcHeightAndTopMainImages() {
   mainBlocks.forEach((block) => {
     const image = block.querySelector(".main__images");
     const slideText = block.querySelector(".main__slide-text");
-    const title = block.querySelector(".main__slide-title").clientHeight;
-    const desc = block.querySelector(".main__slide-desc").clientHeight;
+    const slideH = slideText.querySelector(".main__slide-h").clientHeight;
     const switchH = block.querySelector(".switch").clientHeight;
-    const h = window.innerHeight - title - desc - nav.clientHeight - 75 - 40;
-
+    const h =
+      window.innerHeight +
+      slideH -
+      slideText.clientHeight -
+      nav.clientHeight -
+      75 -
+      40;
     const hMobile = image.clientWidth * 0.66 + switchH + 50;
-    // image.style.height = Math.min(h, image.clientWidth * 0.66) + "px";
     image.style.height = Math.min(h, hMobile) + "px";
-    // image.style.height = h + "px";
-    if (!block.classList.contains("slide-active"))
-      slideText.classList.remove("active");
 
     const text = block.querySelector(".main__text");
     const slides = block.querySelectorAll(".main__slide-text");
     slides.forEach((slide) => {
-      slide.style.height = text.clientHeight + "px";
+      const slideH = slide.querySelector(".main__slide-h");
+      if (slideH.clientHeight == 0)
+        slideH.style.height = text.clientHeight - slide.clientHeight + "px";
     });
   });
 }
 document.addEventListener("DOMContentLoaded", calcHeightAndTopMainImages);
-window.addEventListener("resize", calcHeightAndTopMainImages);
+// window.addEventListener("resize", calcHeightAndTopMainImages);

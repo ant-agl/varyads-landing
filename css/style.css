@@ -393,7 +393,10 @@ body {
   opacity: 0;
 }
 .main__slide-text {
-  display: none;
+  /* display: none; */
+  display: flex;
+  visibility: hidden;
+  position: absolute;
   flex-direction: column;
   gap: 8px;
   align-items: center;
@@ -403,8 +406,9 @@ body {
 }
 .main__slide-text.active {
   opacity: 1;
-  display: flex;
+  /* display: flex; */
   position: static;
+  visibility: visible;
 }
 .main__slide-title {
   font-size: 32px;
@@ -1523,11 +1527,11 @@ body {
   }
 }
 @media (hover: none) {
-  .nav__link:hover,
+  .nav__link:not(.active):hover,
   .lang__select:hover {
     background-color: inherit;
   }
-  .nav__mobile-btn:hover {
+  .nav__mobile-btn:not(.active):hover {
     background-color: var(--bg-hover);
   }
 }
