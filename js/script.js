@@ -271,4 +271,13 @@ function calcHeightAndTopMainImages() {
   });
 }
 document.addEventListener("DOMContentLoaded", calcHeightAndTopMainImages);
-// window.addEventListener("resize", calcHeightAndTopMainImages);
+let oldW = window.innerWidth;
+window.addEventListener("resize", function () {
+  // Если изминяется только высота экрана, ничего не делаем
+  const curW = window.innerWidth;
+  const isReturn = oldW == curW;
+  oldW = curW;
+  if (isReturn) return;
+
+  calcHeightAndTopMainImages();
+});
