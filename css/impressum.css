@@ -20,6 +20,9 @@ body {
   font-weight: var(--h3-weight);
   letter-spacing: -2px;
 }
+.impressum__subtitle:not(:first-child) {
+  margin-top: 30px;
+}
 .impressum__text {
   font-size: var(--desc-big-size);
   line-height: var(--desc-big-height);
