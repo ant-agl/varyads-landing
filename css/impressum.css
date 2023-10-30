@@ -46,8 +46,8 @@ body {
 
 @media (max-width: 830px) {
   .impressum__title {
-    font-size: 35px;
-    line-height: 35px;
+    font-size: 60px;
+    line-height: 60px;
   }
   .impressum__contact {
     flex-direction: column;
