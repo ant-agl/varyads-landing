@@ -52,4 +52,8 @@ body {
   .impressum__contact {
     flex-direction: column;
   }
+  .impressum__subtitle {
+    font-size: 35px;
+    line-height: 35px;
+  }
 }
