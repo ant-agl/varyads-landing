@@ -45,15 +45,33 @@ body {
 }
 
 @media (max-width: 830px) {
+  .impressum {
+    padding-top: 60px;
+  }
   .impressum__title {
     font-size: 60px;
     line-height: 60px;
   }
   .impressum__contact {
     flex-direction: column;
+    margin-top: 50px;
+    gap: 40px;
   }
   .impressum__subtitle {
     font-size: 35px;
     line-height: 35px;
+  }
+}
+@media (max-width: 410px) {
+  .impressum {
+    padding-top: 40px;
+  }
+  .impressum__title {
+    font-size: 50px;
+    line-height: 50px;
+  }
+  .impressum__subtitle {
+    font-size: 27px;
+    line-height: 27px;
   }
 }
