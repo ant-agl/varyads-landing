@@ -29,10 +29,10 @@ body {
   font-weight: var(--desc-big-weight);
   max-width: 896px;
 }
-ul {
+.impressum ul {
   padding-left: 25px;
 }
-ol {
+.impressum ol {
   padding-left: 45px;
 }
 .impressum__contact {
