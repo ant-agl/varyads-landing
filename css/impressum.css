@@ -29,6 +29,9 @@ body {
   font-weight: var(--desc-big-weight);
   max-width: 896px;
 }
+.impressum__text small {
+  font-size: 0.6em;
+}
 .impressum ul {
   padding-left: 25px;
 }
